@@ -1,27 +1,46 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { inject, observer } from "mobx-react";
 import Slide from "../../components/slide/Slide";
 import SlidePreview from "../../components/slide-preview/SlidePreview";
 import Toolbar from "../../components/toolbar/toolbar";
-import { SlideViewWrapper, Slides, MainSlide } from "./SlideView.styles";
+import TextToolbar from "../../components/slide/slide-tools/text-toolbar/TextToolbar";
+import {
+    SlideViewWrapper,
+    SlidePreviewBar,
+    SlidePreviewWrapper,
+    Slides,
+    MainSlide,
+    MainSlideWrapper
+} from "./SlideView.styles";
 
 class SlideView extends Component {
     render() {
-        console.log("SLIDE VIEW PROPS:", this.props);
         return (
             <SlideViewWrapper>
                 <div>
                     <Toolbar />
                 </div>
                 <Slides>
-                    <SlidePreview />
-                    <MainSlide>
-                        <Slide full />
-                    </MainSlide>
+                    <SlidePreviewBar>
+                        <SlidePreviewWrapper>
+                            <SlidePreview />
+                        </SlidePreviewWrapper>
+                    </SlidePreviewBar>
+
+                    <MainSlideWrapper>
+                        <TextToolbar
+                            value={this.props.store.initialEditorData}
+                            editor={this.props.store.activeEditor}
+                        />
+                        <MainSlide>
+                            <Slide full />
+                        </MainSlide>
+                    </MainSlideWrapper>
                 </Slides>
             </SlideViewWrapper>
         );
     }
 }
 
-export default SlideView;
+export default inject("store")(observer(SlideView));

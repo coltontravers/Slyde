@@ -17,7 +17,28 @@ export const MainSlide = styled.div`
     display: flex;
     flex: 1;
     justify-content: center;
-    margin: 2%;
-    padding: 1%;
+    margin: 0 2% 2% 2%;
+    padding: 0% 1% 1% 1%;
     box-shadow: 0px 0px 5px 0px #dedede;
+`;
+
+export const MainSlideWrapper = styled.div`
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-top: 0.5%;
+`;
+
+export const SlidePreviewBar = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    overflow-y: scroll;
+`;
+
+export const SlidePreviewWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    height: 15vh;
+    box-shadow: 0px 0px 0px 1px silver;
 `;

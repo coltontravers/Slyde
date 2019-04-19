@@ -1,23 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { inject, observer } from "mobx-react";
 import Slide from "../slide/Slide";
 import { Slides } from "./SlidePreview.styles";
 
 class SlidePreview extends Component {
     render() {
-        const slides = [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ];
+        const { slides } = this.props.store;
         return (
             <Slides>
                 {slides.map((slide, index) => {
@@ -28,4 +17,8 @@ class SlidePreview extends Component {
     }
 }
 
-export default SlidePreview;
+SlidePreview.propTypes = {
+    store: PropTypes.object.isRequired
+};
+
+export default inject("store")(observer(SlidePreview));
