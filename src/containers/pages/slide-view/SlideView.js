@@ -43,4 +43,8 @@ class SlideView extends Component {
     }
 }
 
+SlideView.propTypes = {
+    store: PropTypes.object.isRequired
+};
+
 export default inject("store")(observer(SlideView));

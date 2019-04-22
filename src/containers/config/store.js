@@ -130,17 +130,17 @@ class Store {
         {
             componentType: "TextInput",
             position: {
-                x: 123,
-                y: 123
+                x: "123px",
+                y: "123px"
             },
             dimensions: {
-                height: 50,
-                width: 500
+                height: "50px",
+                width: "500px"
             },
             content: {
                 text: "This is just some test text for the initial store.",
                 color: "white",
-                fontSize: 12,
+                fontSize: "12",
                 bold: false,
                 italics: false,
                 underline: false

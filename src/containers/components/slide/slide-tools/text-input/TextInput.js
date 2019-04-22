@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Editor } from "slate-react";
-import { decorate, observable, configure, action } from "mobx";
 import { inject, observer } from "mobx-react";
 import { isKeyHotkey } from "is-hotkey";
-import TextToolbar from "../text-toolbar/TextToolbar";
 import { TextInputWrapper } from "./TextInput.styles";
 
 const isBoldHotkey = isKeyHotkey("mod+b");
@@ -87,15 +85,13 @@ class TextInput extends Component {
 
     ref = editor => {
         this.editor = editor;
-        console.log("SETTING THE REF TO:", editor, this.props);
         this.props.store.updateActiveEditor(editor);
     };
 
     render() {
-        const { content } = this.props;
+        // const { content } = this.props;
         return (
             <TextInputWrapper {...this.props}>
-                {/* <TextToolbar value={initialValue} editor={this.editor} /> */}
                 <Editor
                     spellCheck
                     autoFocus
@@ -113,6 +109,7 @@ class TextInput extends Component {
 }
 
 TextInput.propTypes = {
+    store: PropTypes.object.isRequired,
     content: PropTypes.object.isRequired
 };
 

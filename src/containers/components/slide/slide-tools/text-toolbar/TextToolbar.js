@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faEdit,
     faBold,
     faItalic,
     faUnderline,
@@ -16,15 +16,43 @@ import { Wrapper } from "./TextToolbar.styles";
 
 const DEFAULT_NODE = "paragraph";
 
-const iconMap = {
-    format_bold: faBold,
-    format_italic: faItalic,
-    format_underlined: faUnderline,
-    code: faCode,
-    format_quote: faQuoteRight,
-    format_list_numbered: faListOl,
-    format_list_bulleted: faList
-};
+const textToolbarButtons = [
+    {
+        type: "bold",
+        icon: faBold,
+        button: "mark"
+    },
+    {
+        type: "italic",
+        icon: faItalic,
+        button: "mark"
+    },
+    {
+        type: "underlined",
+        icon: faUnderline,
+        button: "mark"
+    },
+    {
+        type: "code",
+        icon: faCode,
+        button: "mark"
+    },
+    {
+        type: "block-quote",
+        icon: faQuoteRight,
+        button: "block"
+    },
+    {
+        type: "numbered-list",
+        icon: faListOl,
+        button: "block"
+    },
+    {
+        type: "bulleted-list",
+        icon: faList,
+        button: "block"
+    }
+];
 
 class TextToolbar extends Component {
     hasMark = type => {
@@ -44,8 +72,9 @@ class TextToolbar extends Component {
             <TextToolbarButton
                 onMouseDown={event => this.onClickMark(event, type)}
                 active={isActive}
+                key={type}
             >
-                <FontAwesomeIcon icon={iconMap[icon]} />
+                <FontAwesomeIcon icon={icon} />
             </TextToolbarButton>
         );
     };
@@ -71,8 +100,9 @@ class TextToolbar extends Component {
             <TextToolbarButton
                 onMouseDown={event => this.onClickBlock(event, type)}
                 active={isActive}
+                key={type}
             >
-                <FontAwesomeIcon icon={iconMap[icon]} />
+                <FontAwesomeIcon icon={icon} />
             </TextToolbarButton>
         );
     };
@@ -172,22 +202,21 @@ class TextToolbar extends Component {
     render() {
         return (
             <Wrapper>
-                {this.renderMarkButton("bold", "format_bold")}
-                {this.renderMarkButton("italic", "format_italic")}
-                {this.renderMarkButton("underlined", "format_underlined")}
-                {this.renderMarkButton("code", "code")}
-                {this.renderBlockButton("block-quote", "format_quote")}
-                {this.renderBlockButton(
-                    "numbered-list",
-                    "format_list_numbered"
-                )}
-                {this.renderBlockButton(
-                    "bulleted-list",
-                    "format_list_bulleted"
-                )}
+                {textToolbarButtons.map(button => {
+                    if (button.button === "mark") {
+                        return this.renderMarkButton(button.type, button.icon);
+                    }
+
+                    return this.renderBlockButton(button.type, button.icon);
+                })}
             </Wrapper>
         );
     }
 }
+
+TextToolbar.propTypes = {
+    store: PropTypes.object.isRequired,
+    value: PropTypes.object.isRequired
+};
 
 export default inject("store")(observer(TextToolbar));

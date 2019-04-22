@@ -9,9 +9,10 @@
     "plugins": ["react", "prettier"],
     "rules": {
         "linebreak-style": 0,
-        "max-len": [1, 120, 2, { "ignoreComments": true }],
+        "max-len": 0,
         "no-unused-vars": 1,
         "prettier/prettier": 1,
+        "array-callback-return": 0,
         "react/jsx-filename-extension": [
             1,
             {
