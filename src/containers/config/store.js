@@ -1,4 +1,6 @@
 import { Value } from "slate";
+import { inject, observer, Provider } from "mobx-react";
+import React from "react";
 
 // Create our initial value...
 const initialValue = Value.fromJSON({
@@ -148,5 +150,14 @@ class Store {
         }
     ];
 }
+
+export const wrapWithStoreAndProps = (StoryComponent, Props) => {
+    const Component = inject("store")(observer(StoryComponent));
+    return (
+        <Provider store={new Store()}>
+            <Component {...Props} />
+        </Provider>
+    );
+};
 
 export default Store;

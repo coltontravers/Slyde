@@ -5,17 +5,6 @@ export const TextInputWrapper = styled.div`
     height: ${props => props.dimensions.height};
     top: ${props => props.position.y};
     left: ${props => props.position.x};
+    overflow: hidden;
+    margin: 0 auto;
 `;
-
-// export const TextInputWrapper = styled.div.attrs({
-//     style: props => {
-//         const { position, dimensions } = props;
-
-//         return {
-//             width: dimensions.width,
-//             height: dimensions.height,
-//             top: position.y,
-//             left: position.x
-//         };
-//     }
-// })``;
