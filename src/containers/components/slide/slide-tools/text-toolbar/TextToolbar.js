@@ -216,7 +216,8 @@ class TextToolbar extends Component {
 
 TextToolbar.propTypes = {
     store: PropTypes.object.isRequired,
-    value: PropTypes.object.isRequired
+    value: PropTypes.object.isRequired,
+    activeEditor: PropTypes.object.isRequired
 };
 
 export default inject("store")(observer(TextToolbar));

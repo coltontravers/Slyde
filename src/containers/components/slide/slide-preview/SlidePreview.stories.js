@@ -2,13 +2,13 @@
 import { storiesOf } from "@storybook/react";
 import { specs } from "storybook-addon-specifications";
 import { wrapWithStoreAndProps } from "../../../config/store";
-import tests from "./FullSlide.test";
-import FullSlide from "./FullSlide";
+import tests from "./SlidePreview.test";
+import SlidePreview from "./SlidePreview";
 
-const stories = storiesOf("Full Slide", module);
+const stories = storiesOf("Slide Preview", module);
 
-stories.add("Default FullSlide", () => {
-    const Component = wrapWithStoreAndProps(FullSlide, { slideIndex: 0 });
+stories.add("Default Slide Preview", () => {
+    const Component = wrapWithStoreAndProps(SlidePreview, { slideIndex: 0 });
     specs(() => tests);
 
     return Component;

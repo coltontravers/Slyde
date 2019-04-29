@@ -104,6 +104,7 @@
         "react-router-dom": "^4.3.1",
         "slate": "^0.45.0",
         "slate-react": "^0.21.20",
-        "styled-components": "^4.2.0"
+        "styled-components": "^4.2.0",
+        "yarn": "^1.15.2"
     }
 }

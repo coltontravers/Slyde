@@ -15,12 +15,6 @@ class TextInput extends Component {
         value: this.props.store.initialEditorData
     };
 
-    componentDidMount() {
-        // Set the position and size of the element here.
-        // Also init the editor on it.
-        // Not sure if I should just init one editor for all elements, or if I should init for all.
-    }
-
     onChange = ({ value }) => {
         this.setState({ value });
     };
@@ -89,7 +83,6 @@ class TextInput extends Component {
     };
 
     render() {
-        // const { content } = this.props;
         return (
             <TextInputWrapper {...this.props}>
                 <Editor
@@ -108,9 +101,21 @@ class TextInput extends Component {
     }
 }
 
+TextInput.defaultProps = {
+    dimensions: {
+        width: "100%",
+        height: "100%"
+    },
+    position: {
+        x: "",
+        y: "0"
+    }
+};
+
 TextInput.propTypes = {
     store: PropTypes.object.isRequired,
-    content: PropTypes.object.isRequired
+    dimensions: PropTypes.object,
+    position: PropTypes.object
 };
 
 export default inject("store")(observer(TextInput));

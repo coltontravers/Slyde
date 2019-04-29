@@ -8,9 +8,10 @@ class FullSlide extends Component {
     render() {
         const { slideIndex, store: { slides } = [] } = this.props;
         const slide = slides[slideIndex];
+
         return (
             <div>
-                {/* I will have ti map through the object to display all of the info for the slide. Since the possibility of so many components, handle that logic/importing in another file. */}
+                {/* I will have to map through the object to display all of the info for the slide. Since the possibility of so many components, handle that logic/importing in another file. */}
                 <TextInput {...slide} />
             </div>
         );
