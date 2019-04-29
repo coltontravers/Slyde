@@ -12,7 +12,14 @@
         ],
         "moduleNameMapper": {
             "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
-        }
+        },
+        "moduleFileExtensions": [
+            "js",
+            "jsx",
+            "json",
+            "ts",
+            "tsx"
+        ]
     },
     "scripts": {
         "test": "jest --watchAll",
