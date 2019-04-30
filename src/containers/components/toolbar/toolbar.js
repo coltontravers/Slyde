@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Tools from "./tools/tools";
-import { Wrapper } from "./toolbar.styles";
+import { Wrapper } from "./Toolbar.styles";
 
 class Toolbar extends Component {
     render() {

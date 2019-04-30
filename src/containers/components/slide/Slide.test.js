@@ -2,7 +2,7 @@
 import { mount } from "enzyme";
 import expect from "expect";
 import { describe, it, beforeEach } from "storybook-addon-specifications";
-import { wrapWithStoreAndProps } from "../../../../config/store";
+import { wrapWithStoreAndProps } from "../../config/store";
 import Slide from "./Slide";
 
 const tests = describe("<Slide />", () => {
