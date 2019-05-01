@@ -3,18 +3,18 @@ import { mount } from "enzyme";
 import expect from "expect";
 import { describe, it, beforeEach } from "storybook-addon-specifications";
 import { wrapWithStoreAndProps } from "../../../config/store";
-import SlidePreview from "./SlidePreview";
+import CompactSlide from "./CompactSlide";
 
-const tests = describe("<SlidePreview />", () => {
+const tests = describe("<CompactSlide />", () => {
     let wrapper;
     let shallowComponent;
 
     beforeEach(() => {
-        wrapper = wrapWithStoreAndProps(SlidePreview, { slideIndex: 0 });
+        wrapper = wrapWithStoreAndProps(CompactSlide, { slideIndex: 0 });
         shallowComponent = mount(wrapper);
     });
 
-    it("Render SlidePreview", () => {
+    it("Render CompactSlide", () => {
         expect(shallowComponent.exists()).toBeTruthy();
     });
 });

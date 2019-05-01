@@ -5,7 +5,7 @@ import { wrapWithStoreAndProps } from "../../config/store";
 import tests from "./SlidePreview.test";
 import SlidePreview from "./SlidePreview";
 
-const stories = storiesOf("Slide Preview 2", module);
+const stories = storiesOf("Slide Preview", module);
 
 stories.add("Default Slide Preview", () => {
     const Component = wrapWithStoreAndProps(SlidePreview);

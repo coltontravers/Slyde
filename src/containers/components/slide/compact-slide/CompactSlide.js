@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
 
-class SlidePreview extends Component {
+class CompactSlide extends Component {
     render() {
         const { store: slides, slideIndex } = this.props;
         const slide = slides[slideIndex];
@@ -10,9 +10,9 @@ class SlidePreview extends Component {
     }
 }
 
-SlidePreview.propTypes = {
+CompactSlide.propTypes = {
     store: PropTypes.object.isRequired,
     slideIndex: PropTypes.number.isRequired
 };
 
-export default inject("store")(observer(SlidePreview));
+export default inject("store")(observer(CompactSlide));
