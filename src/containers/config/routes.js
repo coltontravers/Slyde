@@ -6,7 +6,11 @@ const routes = [
         component: SlideView
     },
     {
-        path: "/slide-view",
+        path: "/test",
+        component: SlideView
+    },
+    {
+        path: "/slide-view/:id?",
         component: SlideView
     }
 ];
