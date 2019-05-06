@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
 import Slide from "../slide/Slide";
-import { Slides } from "./SlidePreview.styles";
+import { Slides, SlideWrapper } from "./SlidePreview.styles";
 
 class SlidePreview extends Component {
     render() {
@@ -10,7 +10,11 @@ class SlidePreview extends Component {
         return (
             <Slides>
                 {slides.map((slide, index) => {
-                    return <Slide key={index} />;
+                    return (
+                        <SlideWrapper key={index}>
+                            <Slide />
+                        </SlideWrapper>
+                    );
                 })}
             </Slides>
         );

@@ -4,9 +4,10 @@ import { inject, observer } from "mobx-react";
 
 class CompactSlide extends Component {
     render() {
-        const { store: slides, slideIndex } = this.props;
-        const slide = slides[slideIndex];
-        return <div>Current Slide: {slide}</div>;
+        const { store, slideIndex } = this.props;
+        const slide = store.slides[slideIndex];
+
+        return <div>Current Slide: {slide.content.text}</div>;
     }
 }
 

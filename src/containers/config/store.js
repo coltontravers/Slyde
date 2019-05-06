@@ -127,7 +127,7 @@ class Store {
 
     // Output these slides from the store to a json file when they want to save.
 
-    // I can add separate classes for these components so I can just do new Slide(), etc.
+    // In order to separate the slide, I will probably need to something along the lines of adding a random hash or similar to each.
     slides = [
         {
             componentType: "TextInput",
@@ -141,6 +141,25 @@ class Store {
             },
             content: {
                 text: "This is just some test text for the initial store.",
+                color: "white",
+                fontSize: "12",
+                bold: false,
+                italics: false,
+                underline: false
+            }
+        },
+        {
+            componentType: "TextInput",
+            position: {
+                x: "123px",
+                y: "123px"
+            },
+            dimensions: {
+                height: "50px",
+                width: "500px"
+            },
+            content: {
+                text: "This is another slide.",
                 color: "white",
                 fontSize: "12",
                 bold: false,

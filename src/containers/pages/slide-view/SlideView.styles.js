@@ -29,13 +29,6 @@ export const MainSlideWrapper = styled.div`
     padding-top: 0.5%;
 `;
 
-export const SlidePreviewBar = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 1%;
-    overflow-y: scroll;
-`;
-
 export const SlidePreviewWrapper = styled.div`
     display: flex;
     width: 100%;
