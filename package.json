@@ -105,6 +105,7 @@
         "slate": "^0.45.0",
         "slate-react": "^0.21.20",
         "styled-components": "^4.2.0",
+        "uuid": "^3.3.2",
         "yarn": "^1.15.2"
     }
 }

@@ -1,5 +1,6 @@
 import { Value } from "slate";
 import { inject, observer, Provider } from "mobx-react";
+import Uuid from "uuid/v4";
 import React from "react";
 
 // Create our initial value...
@@ -127,9 +128,9 @@ class Store {
 
     // Output these slides from the store to a json file when they want to save.
 
-    // In order to separate the slide, I will probably need to something along the lines of adding a random hash or similar to each.
     slides = [
         {
+            id: Uuid(),
             componentType: "TextInput",
             position: {
                 x: "123px",
@@ -149,6 +150,7 @@ class Store {
             }
         },
         {
+            id: Uuid(),
             componentType: "TextInput",
             position: {
                 x: "123px",
