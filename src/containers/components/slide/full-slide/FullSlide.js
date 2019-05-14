@@ -5,22 +5,63 @@ import { inject, observer } from "mobx-react";
 import TextInput from "../slide-tools/text-input/TextInput";
 
 class FullSlide extends Component {
+    // state = {
+    //     slide: null
+    // };
+
+    // componentDidMount() {
+    //     const {
+    //         store: { slides, activePage }
+    //     } = this.props;
+    //     if (activePage) {
+    //         const slide = slides.find(slideInfo => {
+    //             return slideInfo.id === activePage;
+    //         });
+
+    //         this.setState({ slide });
+    //     }
+    // }
+
+    // getSlideData() {
+    //     const {
+    //         store: { slides, activePage }
+    //     } = this.props;
+    //     if (activePage) {
+    //         const slide = slides.find(slideInfo => {
+    //             return slideInfo.id === activePage;
+    //         });
+
+    //         this.setState({ slide });
+    //     }
+    // }
+
     render() {
-        const { slideIndex, store: { slides } = [] } = this.props;
-        const slide = slides[slideIndex];
+        const { activeSlide } = this.props.store;
+
+        // console.log(this.props.store.activePage);
+
+        console.log("FULL SLIDE:", activeSlide);
+
+        // this.getSlideData();
 
         return (
             <div>
-                {/* I will have to map through the object to display all of the info for the slide. Since the possibility of so many components, handle that logic/importing in another file. */}
-                <TextInput {...slide} />
+                {activeSlide &&
+                    activeSlide.content.text.map((textInfo, index) => {
+                        return (
+                            <TextInput
+                                key={index}
+                                editorData={textInfo.editor}
+                            />
+                        );
+                    })}
             </div>
         );
     }
 }
 
 FullSlide.propTypes = {
-    store: PropTypes.object.isRequired,
-    slideIndex: PropTypes.number.isRequired
+    store: PropTypes.object.isRequired
 };
 
 export default inject("store")(observer(FullSlide));

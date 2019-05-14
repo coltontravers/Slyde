@@ -4,26 +4,26 @@ import { decorate, observable } from "mobx";
 import { Provider } from "mobx-react";
 // Possibly replace HashRouter later on with some sort of isomorphic solution.
 import { HashRouter as Router, Route } from "react-router-dom";
+import SlideView from "../pages/slide-view/SlideView";
 import { GlobalStyles, Wrapper } from "./app.styles";
 import Store from "../config/store";
 
 import routes from "../config/routes";
 
-const newStore = decorate(new Store(), {
-    toolbar: observable
-});
-
 const App = () => (
     <Router>
-        <Provider store={newStore}>
+        <Provider store={Store}>
             <Wrapper>
-                {routes.map(route => (
-                    <Route
-                        key={route.path}
-                        path={route.path}
-                        component={route.component}
-                    />
-                ))}
+                <Route exact path="/" component={SlideView} />
+                {routes.map(route => {
+                    return (
+                        <Route
+                            key={route.path}
+                            path={route.path}
+                            component={route.component}
+                        />
+                    );
+                })}
                 <GlobalStyles />
             </Wrapper>
         </Provider>

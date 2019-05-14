@@ -6,21 +6,22 @@ import CompactSlide from "./compact-slide/CompactSlide";
 
 class Slide extends Component {
     render() {
-        const { full, slideIndex } = this.props;
+        console.log("RENDERING SLIDE!");
+        const { full } = this.props;
+
         if (full) {
-            return <FullSlide slideIndex={slideIndex} />;
+            return <FullSlide />;
         }
-        return <CompactSlide slideIndex={slideIndex} />;
+
+        return <CompactSlide />;
     }
 }
 
 Slide.defaultProps = {
-    slideIndex: 0,
     full: false
 };
 
 Slide.propTypes = {
-    slideIndex: PropTypes.number,
     full: PropTypes.bool
 };
 

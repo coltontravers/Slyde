@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Editor } from "slate-react";
 import { inject, observer } from "mobx-react";
+import { withRouter } from "react-router-dom";
 import { isKeyHotkey } from "is-hotkey";
 import { TextInputWrapper } from "./TextInput.styles";
 
@@ -12,7 +13,7 @@ const isCodeHotkey = isKeyHotkey("mod+`");
 
 class TextInput extends Component {
     state = {
-        value: this.props.store.initialEditorData
+        value: this.props.editorData
     };
 
     onChange = ({ value }) => {
@@ -83,6 +84,7 @@ class TextInput extends Component {
     };
 
     render() {
+        console.log("TEXT INPUT PROPS:", this.props);
         return (
             <TextInputWrapper {...this.props}>
                 <Editor
@@ -114,8 +116,11 @@ TextInput.defaultProps = {
 
 TextInput.propTypes = {
     store: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    editorData: PropTypes.object.isRequired,
     dimensions: PropTypes.object,
     position: PropTypes.object
 };
 
-export default inject("store")(observer(TextInput));
+export default withRouter(inject("store")(observer(TextInput)));

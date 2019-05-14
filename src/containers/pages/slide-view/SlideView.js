@@ -15,6 +15,7 @@ import {
 
 class SlideView extends Component {
     render() {
+        const { store } = this.props;
         return (
             <SlideViewWrapper>
                 <div>
@@ -29,8 +30,8 @@ class SlideView extends Component {
 
                     <MainSlideWrapper>
                         <TextToolbar
-                            value={this.props.store.initialEditorData}
-                            editor={this.props.store.activeEditor}
+                            value={store.initialEditorData}
+                            activeEditor={store.activeEditor}
                         />
                         <MainSlide>
                             <Slide full />

@@ -1,3 +1,5 @@
+// This whole file will need to be refactored.
+
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
@@ -214,10 +216,14 @@ class TextToolbar extends Component {
     }
 }
 
+TextToolbar.defaultProps = {
+    activeEditor: {}
+};
+
 TextToolbar.propTypes = {
     store: PropTypes.object.isRequired,
     value: PropTypes.object.isRequired,
-    activeEditor: PropTypes.object.isRequired
+    activeEditor: PropTypes.object
 };
 
 export default inject("store")(observer(TextToolbar));
