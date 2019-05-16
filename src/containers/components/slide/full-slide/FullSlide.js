@@ -5,44 +5,8 @@ import { inject, observer } from "mobx-react";
 import TextInput from "../slide-tools/text-input/TextInput";
 
 class FullSlide extends Component {
-    // state = {
-    //     slide: null
-    // };
-
-    // componentDidMount() {
-    //     const {
-    //         store: { slides, activePage }
-    //     } = this.props;
-    //     if (activePage) {
-    //         const slide = slides.find(slideInfo => {
-    //             return slideInfo.id === activePage;
-    //         });
-
-    //         this.setState({ slide });
-    //     }
-    // }
-
-    // getSlideData() {
-    //     const {
-    //         store: { slides, activePage }
-    //     } = this.props;
-    //     if (activePage) {
-    //         const slide = slides.find(slideInfo => {
-    //             return slideInfo.id === activePage;
-    //         });
-
-    //         this.setState({ slide });
-    //     }
-    // }
-
     render() {
         const { activeSlide } = this.props.store;
-
-        // console.log(this.props.store.activePage);
-
-        console.log("FULL SLIDE:", activeSlide);
-
-        // this.getSlideData();
 
         return (
             <div>

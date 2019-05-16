@@ -6,7 +6,6 @@ import CompactSlide from "./compact-slide/CompactSlide";
 
 class Slide extends Component {
     render() {
-        console.log("RENDERING SLIDE!");
         const { full } = this.props;
 
         if (full) {

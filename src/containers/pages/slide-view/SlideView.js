@@ -14,6 +14,17 @@ import {
 } from "./SlideView.styles";
 
 class SlideView extends Component {
+    componentWillMount() {
+        const {
+            store: { changePage },
+            match: {
+                params: { id }
+            }
+        } = this.props;
+
+        changePage(id);
+    }
+
     render() {
         const { store } = this.props;
         return (
@@ -44,7 +55,8 @@ class SlideView extends Component {
 }
 
 SlideView.propTypes = {
-    store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired
 };
 
 export default inject("store")(observer(SlideView));

@@ -20,6 +20,18 @@ class Store {
         this.activeEditor = editor;
     }
 
+    updateSlideText = (slideId, editorData) => {
+        const slideIndex = this.slides.findIndex(slideInfo => {
+            return slideInfo.id === slideId;
+        });
+
+        const slide = this.slides[slideIndex];
+
+        slide.content.text[0].editor = editorData;
+
+        this.slides[slideIndex] = slide;
+    };
+
     initialEditorData = emptyState;
 
     changePage = id => {
@@ -254,9 +266,11 @@ decorate(Store, {
     toolbar: observable,
     activeEditor: observable,
     initialEditorData: observable,
+    slides: observable,
     activeSlide: computed,
     updateActiveEditor: action,
-    changePage: action
+    changePage: action,
+    updateSlideText: action
 });
 
 export default new Store();

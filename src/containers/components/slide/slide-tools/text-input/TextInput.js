@@ -12,12 +12,9 @@ const isUnderlinedHotkey = isKeyHotkey("mod+u");
 const isCodeHotkey = isKeyHotkey("mod+`");
 
 class TextInput extends Component {
-    state = {
-        value: this.props.editorData
-    };
-
     onChange = ({ value }) => {
-        this.setState({ value });
+        const { updateSlideText, activePage } = this.props.store;
+        updateSlideText(activePage, value);
     };
 
     // eslint-disable-next-line
@@ -84,7 +81,6 @@ class TextInput extends Component {
     };
 
     render() {
-        console.log("TEXT INPUT PROPS:", this.props);
         return (
             <TextInputWrapper {...this.props}>
                 <Editor
@@ -92,7 +88,7 @@ class TextInput extends Component {
                     autoFocus
                     placeholder="Enter some rich text..."
                     ref={this.ref}
-                    value={this.state.value}
+                    value={this.props.editorData}
                     onChange={this.onChange}
                     onKeyDown={this.onKeyDown}
                     renderNode={this.renderNode}
