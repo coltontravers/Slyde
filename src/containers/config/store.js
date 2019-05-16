@@ -1,6 +1,7 @@
 import { Value } from "slate";
 import Plain from "slate-plain-serializer";
 import { decorate, observable, computed, action } from "mobx";
+
 // import { inject, observer, Provider } from "mobx-react";
 // import Uuid from "uuid/v4";
 // import React from "react";

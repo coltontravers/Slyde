@@ -7,11 +7,16 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js"
     },
+    node: {
+        fs: "empty"
+        // net: "empty"
+    },
+    // target: "node",
     module: {
         rules: [
             {
                 test: /\.(js)$/,
-                exclude: /node_modules/,
+                exclude: ["/node_modules/", "/src/server/"],
                 use: ["babel-loader", "eslint-loader"]
             },
             {

@@ -18,7 +18,7 @@ export const MainSlide = styled.div`
     flex: 1;
     justify-content: center;
     margin: 0 2% 2% 2%;
-    padding: 0% 1% 1% 1%;
+    padding: 1%;
     box-shadow: 0px 0px 5px 0px #dedede;
 `;
 
