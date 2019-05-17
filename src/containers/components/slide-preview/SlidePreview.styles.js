@@ -15,5 +15,8 @@ export const SlideWrapper = styled.div`
     min-height: 100px;
     min-width: 100%;
     cursor: pointer;
-    box-shadow: ${props => (props.active ? `0px 0px 1px 1px grey` : "")};
+    box-shadow: ${props =>
+        props.active
+            ? `0px 0px 1px 1px grey`
+            : "0px 0px 0px 1px silver, 0px 0px 3px 2px #dcdcdc"};
 `;

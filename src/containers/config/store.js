@@ -102,84 +102,84 @@ class Store {
                     }
                 ]
             }
+        },
+        {
+            id: "2", // Uuid(),
+            componentType: "TextInput",
+            position: {
+                x: "123px",
+                y: "123px"
+            },
+            dimensions: {
+                height: "50px",
+                width: "500px"
+            },
+            content: {
+                text: [
+                    {
+                        editor: Value.fromJSON({
+                            document: {
+                                nodes: [
+                                    {
+                                        object: "block",
+                                        type: "paragraph",
+                                        nodes: [
+                                            {
+                                                object: "text",
+                                                leaves: [
+                                                    {
+                                                        text:
+                                                            "This is the second slide "
+                                                    },
+                                                    {
+                                                        text: "rich",
+                                                        marks: [
+                                                            {
+                                                                type: "bold"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        text: " text, "
+                                                    },
+                                                    {
+                                                        text: "much",
+                                                        marks: [
+                                                            {
+                                                                type: "italic"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        text: " better than a "
+                                                    },
+                                                    {
+                                                        text: "<textarea>",
+                                                        marks: [
+                                                            {
+                                                                type: "code"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        text: "!"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }),
+                        color: "white",
+                        fontSize: "12",
+                        bold: false,
+                        italics: false,
+                        underline: false
+                    }
+                ]
+            }
         }
-        // {
-        //     id: "2", // Uuid(),
-        //     componentType: "TextInput",
-        //     position: {
-        //         x: "123px",
-        //         y: "123px"
-        //     },
-        //     dimensions: {
-        //         height: "50px",
-        //         width: "500px"
-        //     },
-        //     content: {
-        //         text: [
-        //             {
-        //                 editor: Value.fromJSON({
-        //                     document: {
-        //                         nodes: [
-        //                             {
-        //                                 object: "block",
-        //                                 type: "paragraph",
-        //                                 nodes: [
-        //                                     {
-        //                                         object: "text",
-        //                                         leaves: [
-        //                                             {
-        //                                                 text:
-        //                                                     "This is the second slide "
-        //                                             },
-        //                                             {
-        //                                                 text: "rich",
-        //                                                 marks: [
-        //                                                     {
-        //                                                         type: "bold"
-        //                                                     }
-        //                                                 ]
-        //                                             },
-        //                                             {
-        //                                                 text: " text, "
-        //                                             },
-        //                                             {
-        //                                                 text: "much",
-        //                                                 marks: [
-        //                                                     {
-        //                                                         type: "italic"
-        //                                                     }
-        //                                                 ]
-        //                                             },
-        //                                             {
-        //                                                 text: " better than a "
-        //                                             },
-        //                                             {
-        //                                                 text: "<textarea>",
-        //                                                 marks: [
-        //                                                     {
-        //                                                         type: "code"
-        //                                                     }
-        //                                                 ]
-        //                                             },
-        //                                             {
-        //                                                 text: "!"
-        //                                             }
-        //                                         ]
-        //                                     }
-        //                                 ]
-        //                             }
-        //                         ]
-        //                     }
-        //                 }),
-        //                 color: "white",
-        //                 fontSize: "12",
-        //                 bold: false,
-        //                 italics: false,
-        //                 underline: false
-        //             }
-        //         ]
-        //     }
-        // }
     ];
 
     get activeSlide() {
