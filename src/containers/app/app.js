@@ -1,6 +1,5 @@
 import React from "react";
 import { hot } from "react-hot-loader/root";
-import { decorate, observable } from "mobx";
 import { Provider } from "mobx-react";
 // Possibly replace HashRouter later on with some sort of isomorphic solution.
 import { HashRouter as Router, Route } from "react-router-dom";

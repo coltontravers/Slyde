@@ -6,22 +6,24 @@ import CompactSlide from "./compact-slide/CompactSlide";
 
 class Slide extends Component {
     render() {
-        const { full } = this.props;
+        const { full, slideNumber } = this.props;
 
         if (full) {
             return <FullSlide />;
         }
 
-        return <CompactSlide />;
+        return <CompactSlide slideNumber={slideNumber} />;
     }
 }
 
 Slide.defaultProps = {
-    full: false
+    full: false,
+    slideNumber: null
 };
 
 Slide.propTypes = {
-    full: PropTypes.bool
+    full: PropTypes.bool,
+    slideNumber: PropTypes.number
 };
 
 export default inject("store")(observer(Slide));

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Editor } from "slate-react";
 import { inject, observer } from "mobx-react";
-import { withRouter } from "react-router-dom";
 import { isKeyHotkey } from "is-hotkey";
 import { TextInputWrapper } from "./TextInput.styles";
 
@@ -77,7 +76,11 @@ class TextInput extends Component {
 
     ref = editor => {
         this.editor = editor;
-        this.props.store.updateActiveEditor(editor);
+        const { fullSlide } = this.props;
+
+        if (fullSlide) {
+            this.props.store.updateActiveEditor(editor);
+        }
     };
 
     render() {
@@ -107,16 +110,16 @@ TextInput.defaultProps = {
     position: {
         x: "",
         y: "0"
-    }
+    },
+    fullSlide: false
 };
 
 TextInput.propTypes = {
     store: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
     editorData: PropTypes.object.isRequired,
     dimensions: PropTypes.object,
-    position: PropTypes.object
+    position: PropTypes.object,
+    fullSlide: PropTypes.bool
 };
 
-export default withRouter(inject("store")(observer(TextInput)));
+export default inject("store")(observer(TextInput));

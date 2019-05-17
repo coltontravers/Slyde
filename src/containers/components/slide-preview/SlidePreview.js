@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { observe } from "mobx";
 import { inject, observer } from "mobx-react";
 import { withRouter } from "react-router-dom";
 import Slide from "../slide/Slide";
@@ -14,17 +13,24 @@ class SlidePreview extends Component {
     }
 
     render() {
-        const { slides } = this.props.store;
+        const { slides, activePage } = this.props.store;
 
         return (
             <Slides>
                 {slides.map((slide, index) => {
+                    const slideIndex = slides.findIndex(slideInfo => {
+                        return slideInfo.id === activePage;
+                    });
+
+                    const isActive = slideIndex === index;
+
                     return (
                         <SlideWrapper
                             key={index}
+                            active={isActive}
                             onClick={() => this.slideChange(slides[index].id)}
                         >
-                            <Slide />
+                            <Slide slideNumber={index} />
                         </SlideWrapper>
                     );
                 })}

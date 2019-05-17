@@ -30,7 +30,11 @@ class Store {
 
         slide.content.text[0].editor = editorData;
 
-        this.slides[slideIndex] = slide;
+        const newSlides = [...this.slides];
+
+        newSlides[slideIndex] = slide;
+
+        this.slides = newSlides;
     };
 
     initialEditorData = emptyState;

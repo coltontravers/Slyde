@@ -29,7 +29,7 @@ class SlideView extends Component {
         const { store } = this.props;
         return (
             <SlideViewWrapper>
-                <div>
+                <div id="test">
                     <Toolbar />
                 </div>
                 <Slides>

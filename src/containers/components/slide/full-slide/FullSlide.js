@@ -6,7 +6,9 @@ import TextInput from "../slide-tools/text-input/TextInput";
 
 class FullSlide extends Component {
     render() {
-        const { activeSlide } = this.props.store;
+        const {
+            store: { activeSlide }
+        } = this.props;
 
         return (
             <div>
@@ -15,6 +17,7 @@ class FullSlide extends Component {
                         return (
                             <TextInput
                                 key={index}
+                                fullSlide
                                 editorData={textInfo.editor}
                             />
                         );
