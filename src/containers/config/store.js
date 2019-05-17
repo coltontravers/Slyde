@@ -60,8 +60,9 @@ class Store {
             content: {
                 text: [
                     {
-                        editor: Value.fromJSON({
+                        editor: Value.create({
                             document: {
+                                object: "document",
                                 nodes: [
                                     {
                                         object: "block",
@@ -69,47 +70,12 @@ class Store {
                                         nodes: [
                                             {
                                                 object: "text",
-                                                leaves: [
-                                                    {
-                                                        text:
-                                                            "This is editable (TeStInG) "
-                                                    },
-                                                    {
-                                                        text: "rich",
-                                                        marks: [
-                                                            {
-                                                                type: "bold"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        text: " text, "
-                                                    },
-                                                    {
-                                                        text: "much",
-                                                        marks: [
-                                                            {
-                                                                type: "italic"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        text: " better than a "
-                                                    },
-                                                    {
-                                                        text: "<textarea>",
-                                                        marks: [
-                                                            {
-                                                                type: "code"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        text: "!"
-                                                    }
-                                                ]
+                                                marks: [],
+                                                text:
+                                                    "By default, pasting content into a Slate editor will use the content's plain text representation. This is fine for some use cases, but sometimes you want to actually be able to paste in content and have it parsed into blocks and links and things. To do this, you need to add a parser that triggers on paste. This is an example of doing exactly that!"
                                             }
-                                        ]
+                                        ],
+                                        marks: []
                                     },
                                     {
                                         object: "block",
@@ -117,134 +83,15 @@ class Store {
                                         nodes: [
                                             {
                                                 object: "text",
-                                                leaves: [
-                                                    {
-                                                        text:
-                                                            "Since it's rich text, you can do things like turn a selection of text "
-                                                    },
-                                                    {
-                                                        text: "bold",
-                                                        marks: [
-                                                            {
-                                                                type: "bold"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        text:
-                                                            ", or add a semantically rendered block quote in the middle of the page, like this:"
-                                                    }
-                                                ]
+                                                marks: [],
+                                                text:
+                                                    "Try it out for yourself! Copy and paste some rendered HTML content (not the source code) from another site into this editor."
                                             }
-                                        ]
-                                    },
-                                    {
-                                        object: "block",
-                                        type: "block-quote",
-                                        nodes: [
-                                            {
-                                                object: "text",
-                                                leaves: [
-                                                    {
-                                                        text: "A wise quote."
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        object: "block",
-                                        type: "paragraph",
-                                        nodes: [
-                                            {
-                                                object: "text",
-                                                leaves: [
-                                                    {
-                                                        text:
-                                                            "Try it out for yourself!"
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                        ],
+                                        marks: []
                                     }
-                                ]
-                            }
-                        }),
-                        color: "white",
-                        fontSize: "12",
-                        bold: false,
-                        italics: false,
-                        underline: false
-                    }
-                ]
-            }
-        },
-        {
-            id: "2", // Uuid(),
-            componentType: "TextInput",
-            position: {
-                x: "123px",
-                y: "123px"
-            },
-            dimensions: {
-                height: "50px",
-                width: "500px"
-            },
-            content: {
-                text: [
-                    {
-                        editor: Value.fromJSON({
-                            document: {
-                                nodes: [
-                                    {
-                                        object: "block",
-                                        type: "paragraph",
-                                        nodes: [
-                                            {
-                                                object: "text",
-                                                leaves: [
-                                                    {
-                                                        text:
-                                                            "This is the second slide "
-                                                    },
-                                                    {
-                                                        text: "rich",
-                                                        marks: [
-                                                            {
-                                                                type: "bold"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        text: " text, "
-                                                    },
-                                                    {
-                                                        text: "much",
-                                                        marks: [
-                                                            {
-                                                                type: "italic"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        text: " better than a "
-                                                    },
-                                                    {
-                                                        text: "<textarea>",
-                                                        marks: [
-                                                            {
-                                                                type: "code"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        text: "!"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
+                                ],
+                                marks: []
                             }
                         }),
                         color: "white",
@@ -256,6 +103,83 @@ class Store {
                 ]
             }
         }
+        // {
+        //     id: "2", // Uuid(),
+        //     componentType: "TextInput",
+        //     position: {
+        //         x: "123px",
+        //         y: "123px"
+        //     },
+        //     dimensions: {
+        //         height: "50px",
+        //         width: "500px"
+        //     },
+        //     content: {
+        //         text: [
+        //             {
+        //                 editor: Value.fromJSON({
+        //                     document: {
+        //                         nodes: [
+        //                             {
+        //                                 object: "block",
+        //                                 type: "paragraph",
+        //                                 nodes: [
+        //                                     {
+        //                                         object: "text",
+        //                                         leaves: [
+        //                                             {
+        //                                                 text:
+        //                                                     "This is the second slide "
+        //                                             },
+        //                                             {
+        //                                                 text: "rich",
+        //                                                 marks: [
+        //                                                     {
+        //                                                         type: "bold"
+        //                                                     }
+        //                                                 ]
+        //                                             },
+        //                                             {
+        //                                                 text: " text, "
+        //                                             },
+        //                                             {
+        //                                                 text: "much",
+        //                                                 marks: [
+        //                                                     {
+        //                                                         type: "italic"
+        //                                                     }
+        //                                                 ]
+        //                                             },
+        //                                             {
+        //                                                 text: " better than a "
+        //                                             },
+        //                                             {
+        //                                                 text: "<textarea>",
+        //                                                 marks: [
+        //                                                     {
+        //                                                         type: "code"
+        //                                                     }
+        //                                                 ]
+        //                                             },
+        //                                             {
+        //                                                 text: "!"
+        //                                             }
+        //                                         ]
+        //                                     }
+        //                                 ]
+        //                             }
+        //                         ]
+        //                     }
+        //                 }),
+        //                 color: "white",
+        //                 fontSize: "12",
+        //                 bold: false,
+        //                 italics: false,
+        //                 underline: false
+        //             }
+        //         ]
+        //     }
+        // }
     ];
 
     get activeSlide() {
