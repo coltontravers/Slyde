@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
 // import slideTools from "../slide-tools/slide-tools";
 import TextInput from "../slide-tools/text-input/TextInput";
+import { TextInputWrapper } from "./FullSlide.styles";
 
 class FullSlide extends Component {
     render() {
@@ -11,7 +12,7 @@ class FullSlide extends Component {
         } = this.props;
 
         return (
-            <div>
+            <TextInputWrapper>
                 {activeSlide &&
                     activeSlide.content.text.map((textInfo, index) => {
                         return (
@@ -22,7 +23,7 @@ class FullSlide extends Component {
                             />
                         );
                     })}
-            </div>
+            </TextInputWrapper>
         );
     }
 }

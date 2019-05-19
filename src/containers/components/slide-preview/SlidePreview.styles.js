@@ -11,9 +11,11 @@ export const Slides = styled.div`
 
 export const SlideWrapper = styled.div`
     margin: 4% 0;
-    padding: 3%;
-    min-height: 100px;
-    min-width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    width: 100%;
+    padding-top: 56.25%;
     cursor: pointer;
     box-shadow: ${props =>
         props.active

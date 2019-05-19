@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-export const Slide = styled.div`
-    zoom: 0.2%;
+export const TextInputWrapper = styled.div`
     position: absolute;
     top: 0;
     bottom: 0;

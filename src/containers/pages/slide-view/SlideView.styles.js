@@ -15,10 +15,12 @@ export const Slides = styled.div`
 
 export const MainSlide = styled.div`
     display: flex;
-    flex: 1;
     justify-content: center;
     margin: 0 2% 2% 2%;
-    padding: 1%;
+    overflow: hidden;
+    height: 0;
+    position: relative;
+    padding-top: 56.25%;
     box-shadow: 0px 0px 5px 0px #dedede;
 `;
 

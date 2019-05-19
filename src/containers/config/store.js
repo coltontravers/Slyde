@@ -50,12 +50,12 @@ class Store {
             id: "1", // Uuid(),
             componentType: "TextInput",
             position: {
-                x: "123px",
-                y: "123px"
+                x: "100px",
+                y: "100px"
             },
             dimensions: {
                 height: "50px",
-                width: "500px"
+                width: "50px"
             },
             content: {
                 text: [
@@ -107,12 +107,12 @@ class Store {
             id: "2", // Uuid(),
             componentType: "TextInput",
             position: {
-                x: "123px",
-                y: "123px"
+                x: "100px",
+                y: "100px"
             },
             dimensions: {
                 height: "50px",
-                width: "500px"
+                width: "50px"
             },
             content: {
                 text: [
