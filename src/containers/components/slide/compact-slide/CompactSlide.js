@@ -13,8 +13,7 @@ class CompactSlide extends Component {
 
         return (
             <Slide>
-                {/* <p>test</p> */}
-                <CompactSlideView activeSlide={slides[slideNumber]} />
+                <CompactSlideView slideNumber={slideNumber} />
             </Slide>
         );
     }

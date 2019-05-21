@@ -3,12 +3,15 @@ import PropTypes from "prop-types";
 import { Editor } from "slate-react";
 import { inject, observer } from "mobx-react";
 import { isKeyHotkey } from "is-hotkey";
+import RichText from "../rich-text/RichText";
 import { TextInputWrapper } from "./TextInput.styles";
 
 const isBoldHotkey = isKeyHotkey("mod+b");
 const isItalicHotkey = isKeyHotkey("mod+i");
 const isUnderlinedHotkey = isKeyHotkey("mod+u");
 const isCodeHotkey = isKeyHotkey("mod+`");
+
+const { BlockQuote, CodeBlock } = RichText;
 
 class TextInput extends Component {
     onChange = ({ value }) => {
@@ -41,7 +44,7 @@ class TextInput extends Component {
 
         switch (node.type) {
             case "block-quote":
-                return <blockquote {...attributes}>{children}</blockquote>;
+                return <BlockQuote {...attributes}>{children}</BlockQuote>;
             case "bulleted-list":
                 return <ul {...attributes}>{children}</ul>;
             case "heading-one":
@@ -64,7 +67,7 @@ class TextInput extends Component {
             case "bold":
                 return <strong {...attributes}>{children}</strong>;
             case "code":
-                return <code {...attributes}>{children}</code>;
+                return <CodeBlock {...attributes}>{children}</CodeBlock>;
             case "italic":
                 return <em {...attributes}>{children}</em>;
             case "underlined":

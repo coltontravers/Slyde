@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
+import { Value } from "slate";
 // import slideTools from "../slide-tools/slide-tools";
 import TextInput from "../slide-tools/text-input/TextInput";
 import { TextInputWrapper } from "./FullSlide.styles";
@@ -19,7 +20,7 @@ class FullSlide extends Component {
                             <TextInput
                                 key={index}
                                 fullSlide
-                                editorData={textInfo.editor}
+                                editorData={Value.create(textInfo.editor)}
                             />
                         );
                     })}
