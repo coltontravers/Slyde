@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
+import { Value } from "slate";
 import Slide from "../../components/slide/Slide";
 import SlidePreviewBar from "../../components/slide-preview/slide-preview-bar/SlidePreviewBar";
 import Toolbar from "../../components/toolbar/Toolbar";
@@ -27,6 +28,7 @@ class SlideView extends Component {
 
     render() {
         const { store } = this.props;
+
         return (
             <SlideViewWrapper>
                 <div id="test">
@@ -41,7 +43,10 @@ class SlideView extends Component {
 
                     <MainSlideWrapper>
                         <TextToolbar
-                            value={store.initialEditorData}
+                            value={Value.create(
+                                store.slides[Number(store.activePage) - 1]
+                                    .content.text[0].editor
+                            )}
                             activeEditor={store.activeEditor}
                         />
                         <MainSlide>

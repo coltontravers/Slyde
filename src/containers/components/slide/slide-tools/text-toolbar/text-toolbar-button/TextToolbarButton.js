@@ -4,24 +4,18 @@ import { Button } from "./TextToolbarButton.styles";
 
 class TextToolbarButton extends Component {
     render() {
-        const { onMouseDown, isActive } = this.props;
-        return (
-            <Button onMouseDown={onMouseDown} isActive={isActive}>
-                {this.props.children}
-            </Button>
-        );
+        const { onMouseDown } = this.props;
+        return <Button onMouseDown={onMouseDown}>{this.props.children}</Button>;
     }
 }
 
 TextToolbarButton.defaultProps = {
     onMouseDown: () => {},
-    isActive: false,
     children: ""
 };
 
 TextToolbarButton.propTypes = {
     onMouseDown: PropTypes.func,
-    isActive: PropTypes.bool,
     children: PropTypes.any
 };
 
