@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Button = styled.button`
     padding: 1em 1em;
     display: inline-block;
+    flex: 1 1 0;
     border: none;
     margin: 0;
     background: none;
@@ -28,4 +29,10 @@ export const Button = styled.button`
         background: silver;
         outline: none;
     }
+
+    background: ${props => (props.active ? `silver` : "none")};
+    box-shadow: ${props =>
+        props.active
+            ? `0 9px 0px 0px #ffffff00, 0 -9px 0px 0px #ffffff00, 1px 0 0px 0px #808080, -1px 0 0px 0px #808080;`
+            : "none"};
 `;

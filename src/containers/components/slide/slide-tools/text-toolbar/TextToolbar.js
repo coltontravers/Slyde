@@ -14,7 +14,7 @@ import {
     faListOl
 } from "@fortawesome/free-solid-svg-icons";
 import TextToolbarButton from "./text-toolbar-button/TextToolbarButton";
-import { Wrapper } from "./TextToolbar.styles";
+import { Wrapper, PrimaryFormatButtons } from "./TextToolbar.styles";
 
 const DEFAULT_NODE = "paragraph";
 
@@ -167,13 +167,18 @@ class TextToolbar extends Component {
     render() {
         return (
             <Wrapper>
-                {textToolbarButtons.map(button => {
-                    if (button.button === "mark") {
-                        return this.renderMarkButton(button.type, button.icon);
-                    }
+                <PrimaryFormatButtons>
+                    {textToolbarButtons.map(button => {
+                        if (button.button === "mark") {
+                            return this.renderMarkButton(
+                                button.type,
+                                button.icon
+                            );
+                        }
 
-                    return this.renderBlockButton(button.type, button.icon);
-                })}
+                        return this.renderBlockButton(button.type, button.icon);
+                    })}
+                </PrimaryFormatButtons>
             </Wrapper>
         );
     }

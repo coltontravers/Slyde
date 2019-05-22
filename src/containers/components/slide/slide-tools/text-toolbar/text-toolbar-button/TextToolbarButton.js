@@ -4,8 +4,13 @@ import { Button } from "./TextToolbarButton.styles";
 
 class TextToolbarButton extends Component {
     render() {
-        const { onMouseDown } = this.props;
-        return <Button onMouseDown={onMouseDown}>{this.props.children}</Button>;
+        const { onMouseDown, active } = this.props;
+
+        return (
+            <Button onMouseDown={onMouseDown} active={active}>
+                {this.props.children}
+            </Button>
+        );
     }
 }
 
@@ -16,7 +21,8 @@ TextToolbarButton.defaultProps = {
 
 TextToolbarButton.propTypes = {
     onMouseDown: PropTypes.func,
-    children: PropTypes.any
+    children: PropTypes.any,
+    active: PropTypes.bool.isRequired
 };
 
 export default TextToolbarButton;
