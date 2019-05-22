@@ -4,7 +4,7 @@ export const TextInputWrapper = styled.div`
     position: absolute;
     top: 0;
     bottom: 0;
-    width: inherit;
+    width: 100%;
     max-height: inherit;
-    padding: 1.5%;
+    margin: 1.5%;
 `;
