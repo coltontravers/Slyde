@@ -17,9 +17,9 @@ import {
 class SlideView extends Component {
     componentWillMount() {
         const {
-            store: { changePage },
+            store: { changePage, slides },
             match: {
-                params: { id }
+                params: { id = slides[0].id }
             }
         } = this.props;
 
@@ -27,11 +27,15 @@ class SlideView extends Component {
     }
 
     render() {
-        const { store } = this.props;
+        const {
+            store: { activeEditor, activePage, slides }
+        } = this.props;
+
+        const slide = slides[Number(activePage) - 1].content.text[0].editor;
 
         return (
             <SlideViewWrapper>
-                <div id="test">
+                <div>
                     <Toolbar />
                 </div>
                 <Slides>
@@ -43,11 +47,8 @@ class SlideView extends Component {
 
                     <MainSlideWrapper>
                         <TextToolbar
-                            value={Value.create(
-                                store.slides[Number(store.activePage) - 1]
-                                    .content.text[0].editor
-                            )}
-                            activeEditor={store.activeEditor}
+                            value={Value.create(slide)}
+                            activeEditor={activeEditor}
                         />
                         <MainSlide>
                             <Slide full />
