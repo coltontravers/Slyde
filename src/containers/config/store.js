@@ -1,5 +1,6 @@
 import { decorate, observable, computed, action } from "mobx";
 import Plain from "slate-plain-serializer";
+import { Value } from "slate";
 
 const emptyState = Plain.deserialize("");
 
@@ -27,7 +28,7 @@ class Store {
             content: {
                 text: [
                     {
-                        editor: {
+                        editor: Value.fromJSON({
                             object: "value",
                             document: {
                                 object: "document",
@@ -38,7 +39,6 @@ class Store {
                                         nodes: [
                                             {
                                                 object: "text",
-                                                marks: [],
                                                 text:
                                                     "By default, pasting content into a Slate editor will use the content's plain text representation. This is fine for some use cases, but sometimes you want to actually be able to paste in content and have it parsed into blocks and links and things. To do this, you need to add a parser that triggers on paste. This is an example of doing exactly that!"
                                             }
@@ -50,7 +50,6 @@ class Store {
                                         nodes: [
                                             {
                                                 object: "text",
-                                                marks: [],
                                                 text:
                                                     "Try it out for yourself! Copy and paste some rendered HTML content (not the source code) from another site into this editor."
                                             }
@@ -58,61 +57,7 @@ class Store {
                                     }
                                 ]
                             }
-                        },
-                        color: "white",
-                        fontSize: "12",
-                        bold: false,
-                        italics: false,
-                        underline: false
-                    }
-                ]
-            }
-        },
-        {
-            id: "2", // Uuid(),
-            componentType: "TextInput",
-            position: {
-                x: "100px",
-                y: "100px"
-            },
-            dimensions: {
-                height: "50px",
-                width: "50px"
-            },
-            content: {
-                text: [
-                    {
-                        editor: {
-                            object: "value",
-                            document: {
-                                object: "document",
-                                nodes: [
-                                    {
-                                        object: "block",
-                                        type: "paragraph",
-                                        nodes: [
-                                            {
-                                                object: "text",
-                                                marks: [],
-                                                text: "This is the 2nd slide!"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        object: "block",
-                                        type: "paragraph",
-                                        nodes: [
-                                            {
-                                                object: "text",
-                                                marks: [],
-                                                text:
-                                                    "Try it out for yourself! Copy and paste some rendered HTML content (not the source code) from another site into this editor."
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        },
+                        }),
                         color: "white",
                         fontSize: "12",
                         bold: false,
@@ -122,6 +67,60 @@ class Store {
                 ]
             }
         }
+        // {
+        //     id: "2", // Uuid(),
+        //     componentType: "TextInput",
+        //     position: {
+        //         x: "100px",
+        //         y: "100px"
+        //     },
+        //     dimensions: {
+        //         height: "50px",
+        //         width: "50px"
+        //     },
+        //     content: {
+        //         text: [
+        //             {
+        //                 editor: Value.fromJSON({
+        //                     object: "value",
+        //                     document: {
+        //                         object: "document",
+        //                         nodes: [
+        //                             {
+        //                                 object: "block",
+        //                                 type: "paragraph",
+        //                                 nodes: [
+        //                                     {
+        //                                         object: "text",
+        //                                         marks: [],
+        //                                         text: "This is the 2nd slide!"
+        //                                     }
+        //                                 ]
+        //                             },
+        //                             {
+        //                                 object: "block",
+        //                                 type: "paragraph",
+        //                                 nodes: [
+        //                                     {
+        //                                         object: "text",
+        //                                         marks: [],
+        //                                         text:
+        //                                             "Try it out for yourself! Copy and paste some rendered HTML content (not the source code) from another site into this editor."
+        //                                     }
+        //                                 ]
+        //                             }
+        //                         ]
+        //                     }
+        //                 }),
+        //                 color: "white",
+        //                 fontSize: "12",
+        //                 bold: false,
+        //                 italics: false,
+        //                 underline: false
+        //             }
+        //         ]
+        //     }
+        // }
     ];
 
     toolbar = {

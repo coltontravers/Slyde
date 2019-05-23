@@ -10,7 +10,9 @@ import {
     faCode,
     faQuoteRight,
     faList,
-    faListOl
+    faListOl,
+    faUndo,
+    faRedo
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TextToolbarButton from "./text-toolbar-button/TextToolbarButton";
@@ -122,6 +124,16 @@ class TextToolbar extends Component {
         this.props.store.activeEditor.toggleMark(type);
     };
 
+    onClickRedo = event => {
+        event.preventDefault();
+        this.props.store.activeEditor.redo();
+    };
+
+    onClickUndo = event => {
+        event.preventDefault();
+        this.props.store.activeEditor.undo();
+    };
+
     renderBlockButton = (type, icon) => {
         let isActive = this.hasBlock(type);
 
@@ -165,6 +177,10 @@ class TextToolbar extends Component {
     };
 
     render() {
+        const { data } = this.props.value;
+        const undos = data.get("undos");
+        const redos = data.get("redos");
+
         return (
             <Wrapper>
                 <PrimaryFormatButtons>
@@ -178,6 +194,18 @@ class TextToolbar extends Component {
 
                         return this.renderBlockButton(button.type, button.icon);
                     })}
+
+                    <TextToolbarButton
+                        onMouseDown={event => this.onClickUndo(event)}
+                    >
+                        <FontAwesomeIcon icon={faUndo} />
+                    </TextToolbarButton>
+
+                    <TextToolbarButton
+                        onMouseDown={event => this.onClickRedo(event)}
+                    >
+                        <FontAwesomeIcon icon={faRedo} />
+                    </TextToolbarButton>
                 </PrimaryFormatButtons>
             </Wrapper>
         );

@@ -39,15 +39,15 @@ class SlideView extends Component {
                     <Toolbar />
                 </div>
                 <Slides>
-                    <SlidePreviewBar>
+                    {/* <SlidePreviewBar>
                         <SlidePreviewWrapper>
                             <SlidePreviewBar />
                         </SlidePreviewWrapper>
-                    </SlidePreviewBar>
+                    </SlidePreviewBar> */}
 
                     <MainSlideWrapper>
                         <TextToolbar
-                            value={Value.create(slide)}
+                            value={slide}
                             activeEditor={activeEditor}
                         />
                         <MainSlide>

@@ -15,12 +15,13 @@ class TextToolbarButton extends Component {
 }
 
 TextToolbarButton.defaultProps = {
+    active: false,
     children: "",
     onMouseDown: () => {}
 };
 
 TextToolbarButton.propTypes = {
-    active: PropTypes.bool.isRequired,
+    active: PropTypes.bool,
     children: PropTypes.any,
     onMouseDown: PropTypes.func
 };

@@ -15,11 +15,12 @@ class FullSlide extends Component {
             <TextInputWrapper>
                 {activeSlide &&
                     activeSlide.content.text.map((textInfo, index) => {
+                        console.log("FULL SLIDE EDITOR:", textInfo.editor);
                         return (
                             <TextInput
                                 key={index}
                                 fullSlide
-                                editorData={Value.create(textInfo.editor)}
+                                editorData={textInfo.editor}
                             />
                         );
                     })}
