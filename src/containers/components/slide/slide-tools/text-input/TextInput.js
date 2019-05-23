@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Editor } from "slate-react";
-import { inject, observer } from "mobx-react";
 import { isKeyHotkey } from "is-hotkey";
+import { inject, observer } from "mobx-react";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { Editor } from "slate-react";
 import RichText from "../rich-text/RichText";
 import { TextInputWrapper } from "./TextInput.styles";
 
 const isBoldHotkey = isKeyHotkey("mod+b");
+const isCodeHotkey = isKeyHotkey("mod+`");
 const isItalicHotkey = isKeyHotkey("mod+i");
 const isUnderlinedHotkey = isKeyHotkey("mod+u");
-const isCodeHotkey = isKeyHotkey("mod+`");
 
 const { BlockQuote, CodeBlock } = RichText;
 
@@ -39,24 +39,12 @@ class TextInput extends Component {
         editor.toggleMark(mark);
     };
 
-    renderNode = (props, editor, next) => {
-        const { attributes, children, node } = props;
+    ref = editor => {
+        this.editor = editor;
+        const { fullSlide } = this.props;
 
-        switch (node.type) {
-            case "block-quote":
-                return <BlockQuote {...attributes}>{children}</BlockQuote>;
-            case "bulleted-list":
-                return <ul {...attributes}>{children}</ul>;
-            case "heading-one":
-                return <h1 {...attributes}>{children}</h1>;
-            case "heading-two":
-                return <h2 {...attributes}>{children}</h2>;
-            case "list-item":
-                return <li {...attributes}>{children}</li>;
-            case "numbered-list":
-                return <ol {...attributes}>{children}</ol>;
-            default:
-                return next();
+        if (fullSlide) {
+            this.props.store.updateActiveEditor(editor);
         }
     };
 
@@ -77,12 +65,24 @@ class TextInput extends Component {
         }
     };
 
-    ref = editor => {
-        this.editor = editor;
-        const { fullSlide } = this.props;
+    renderNode = (props, editor, next) => {
+        const { attributes, children, node } = props;
 
-        if (fullSlide) {
-            this.props.store.updateActiveEditor(editor);
+        switch (node.type) {
+            case "block-quote":
+                return <BlockQuote {...attributes}>{children}</BlockQuote>;
+            case "bulleted-list":
+                return <ul {...attributes}>{children}</ul>;
+            case "heading-one":
+                return <h1 {...attributes}>{children}</h1>;
+            case "heading-two":
+                return <h2 {...attributes}>{children}</h2>;
+            case "list-item":
+                return <li {...attributes}>{children}</li>;
+            case "numbered-list":
+                return <ol {...attributes}>{children}</ol>;
+            default:
+                return next();
         }
     };
 

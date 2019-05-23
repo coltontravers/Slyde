@@ -2,8 +2,8 @@
 import { storiesOf } from "@storybook/react";
 import { specs } from "storybook-addon-specifications";
 import { wrapWithStoreAndProps } from "../../../../config/store";
-import tests from "./TextInput.test";
 import TextInput from "./TextInput";
+import tests from "./TextInput.test";
 
 const stories = storiesOf("Text Input", module);
 

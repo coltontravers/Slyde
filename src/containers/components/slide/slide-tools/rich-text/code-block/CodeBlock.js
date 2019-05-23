@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { CodeBlock as CodeBlockStyled } from "./CodeBlock.styles";
 
 class CodeBlock extends Component {

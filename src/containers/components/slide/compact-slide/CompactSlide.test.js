@@ -2,8 +2,8 @@
 import { mount } from "enzyme";
 import expect from "expect";
 import { describe, it, beforeEach } from "storybook-addon-specifications";
-import { wrapWithStoreAndProps } from "../../../config/store";
 import CompactSlide from "./CompactSlide";
+import { wrapWithStoreAndProps } from "../../../config/store";
 
 const tests = describe("<CompactSlide />", () => {
     let wrapper;

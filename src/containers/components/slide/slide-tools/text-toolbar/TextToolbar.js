@@ -1,9 +1,8 @@
 // This whole file will need to be refactored.
 
-import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { Component } from "react";
 import {
     faBold,
     faItalic,
@@ -13,6 +12,7 @@ import {
     faList,
     faListOl
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TextToolbarButton from "./text-toolbar-button/TextToolbarButton";
 import { Wrapper, PrimaryFormatButtons } from "./TextToolbar.styles";
 
@@ -57,62 +57,15 @@ const textToolbarButtons = [
 ];
 
 class TextToolbar extends Component {
-    hasMark = type => {
-        const { value } = this.props;
-        return value.activeMarks.some(mark => mark.type === type);
-    };
-
     hasBlock = type => {
         const { value } = this.props;
 
         return value.blocks.some(node => node.type === type);
     };
 
-    renderMarkButton = (type, icon) => {
-        const isActive = this.hasMark(type);
-
-        return (
-            <TextToolbarButton
-                onMouseDown={event => this.onClickMark(event, type)}
-                active={isActive}
-                key={type}
-            >
-                <FontAwesomeIcon icon={icon} />
-            </TextToolbarButton>
-        );
-    };
-
-    renderBlockButton = (type, icon) => {
-        let isActive = this.hasBlock(type);
-
-        if (["numbered-list", "bulleted-list"].includes(type)) {
-            const {
-                value: { document, blocks }
-            } = this.props;
-
-            if (blocks.size > 0) {
-                const parent = document.getParent(blocks.first().key);
-                isActive =
-                    this.hasBlock("list-item") &&
-                    parent &&
-                    parent.type === type;
-            }
-        }
-
-        return (
-            <TextToolbarButton
-                onMouseDown={event => this.onClickBlock(event, type)}
-                active={isActive}
-                key={type}
-            >
-                <FontAwesomeIcon icon={icon} />
-            </TextToolbarButton>
-        );
-    };
-
-    onClickMark = (event, type) => {
-        event.preventDefault();
-        this.props.store.activeEditor.toggleMark(type);
+    hasMark = type => {
+        const { value } = this.props;
+        return value.activeMarks.some(mark => mark.type === type);
     };
 
     onClickBlock = (event, type) => {
@@ -162,6 +115,53 @@ class TextToolbar extends Component {
                 activeEditor.setBlocks("list-item").wrapBlock(type);
             }
         }
+    };
+
+    onClickMark = (event, type) => {
+        event.preventDefault();
+        this.props.store.activeEditor.toggleMark(type);
+    };
+
+    renderBlockButton = (type, icon) => {
+        let isActive = this.hasBlock(type);
+
+        if (["numbered-list", "bulleted-list"].includes(type)) {
+            const {
+                value: { document, blocks }
+            } = this.props;
+
+            if (blocks.size > 0) {
+                const parent = document.getParent(blocks.first().key);
+                isActive =
+                    this.hasBlock("list-item") &&
+                    parent &&
+                    parent.type === type;
+            }
+        }
+
+        return (
+            <TextToolbarButton
+                onMouseDown={event => this.onClickBlock(event, type)}
+                active={isActive}
+                key={type}
+            >
+                <FontAwesomeIcon icon={icon} />
+            </TextToolbarButton>
+        );
+    };
+
+    renderMarkButton = (type, icon) => {
+        const isActive = this.hasMark(type);
+
+        return (
+            <TextToolbarButton
+                onMouseDown={event => this.onClickMark(event, type)}
+                active={isActive}
+                key={type}
+            >
+                <FontAwesomeIcon icon={icon} />
+            </TextToolbarButton>
+        );
     };
 
     render() {

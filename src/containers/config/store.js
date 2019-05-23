@@ -1,42 +1,14 @@
-import Plain from "slate-plain-serializer";
 import { decorate, observable, computed, action } from "mobx";
+import Plain from "slate-plain-serializer";
 
 const emptyState = Plain.deserialize("");
 
 class Store {
-    activePage = "1";
-
-    toolbar = {
-        activeTool: ""
-    };
-
     activeEditor = null;
 
-    updateActiveEditor(editor) {
-        this.activeEditor = editor;
-    }
-
-    updateSlideText = (slideId, editorData) => {
-        const slideIndex = this.slides.findIndex(slideInfo => {
-            return slideInfo.id === slideId;
-        });
-
-        const slide = this.slides[slideIndex];
-
-        slide.content.text[0].editor = editorData;
-
-        const newSlides = [...this.slides];
-
-        newSlides[slideIndex] = slide;
-
-        this.slides = newSlides;
-    };
+    activePage = "1";
 
     initialEditorData = emptyState;
-
-    changePage = id => {
-        this.activePage = id;
-    };
 
     // Output these slides from the store to a json file when they want to save.
 
@@ -152,6 +124,34 @@ class Store {
         }
     ];
 
+    toolbar = {
+        activeTool: ""
+    };
+
+    changePage = id => {
+        this.activePage = id;
+    };
+
+    updateActiveEditor(editor) {
+        this.activeEditor = editor;
+    }
+
+    updateSlideText = (slideId, editorData) => {
+        const slideIndex = this.slides.findIndex(slideInfo => {
+            return slideInfo.id === slideId;
+        });
+
+        const slide = this.slides[slideIndex];
+
+        slide.content.text[0].editor = editorData;
+
+        const newSlides = [...this.slides];
+
+        newSlides[slideIndex] = slide;
+
+        this.slides = newSlides;
+    };
+
     get activeSlide() {
         const slide = this.slides.find(slideInfo => {
             return slideInfo.id === this.activePage;
@@ -160,6 +160,7 @@ class Store {
         return slide;
     }
 }
+
 decorate(Store, {
     activePage: observable,
     toolbar: observable,

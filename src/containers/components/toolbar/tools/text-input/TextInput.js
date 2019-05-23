@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { inject, observer } from "mobx-react";
+import React, { Component } from "react";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GeneralButton } from "../tools.styles"; // Instead of importing here, just extend it in the styles for this component.
 
 class TextInput extends Component {

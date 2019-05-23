@@ -2,8 +2,8 @@
 import { storiesOf } from "@storybook/react";
 import { specs } from "storybook-addon-specifications";
 import { wrapWithStoreAndProps } from "../../../../../config/store";
-import tests from "./TextToolbarButton.test";
 import TextToolbarButton from "./TextToolbarButton";
+import tests from "./TextToolbarButton.test";
 
 const stories = storiesOf("Text Toolbar Button", module);
 

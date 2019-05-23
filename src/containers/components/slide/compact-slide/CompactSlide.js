@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import PropTypes from "prop-types";
+import React, { Component } from "react";
 import CompactSlideView from "./compact-slide-view/CompactSlideView";
 import { Slide } from "./CompactSlide.styles";
 

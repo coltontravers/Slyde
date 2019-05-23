@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { Button } from "./TextToolbarButton.styles";
 
 class TextToolbarButton extends Component {
@@ -15,14 +15,14 @@ class TextToolbarButton extends Component {
 }
 
 TextToolbarButton.defaultProps = {
-    onMouseDown: () => {},
-    children: ""
+    children: "",
+    onMouseDown: () => {}
 };
 
 TextToolbarButton.propTypes = {
-    onMouseDown: PropTypes.func,
+    active: PropTypes.bool.isRequired,
     children: PropTypes.any,
-    active: PropTypes.bool.isRequired
+    onMouseDown: PropTypes.func
 };
 
 export default TextToolbarButton;

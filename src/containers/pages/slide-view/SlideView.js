@@ -1,11 +1,9 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { inject, observer } from "mobx-react";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { Value } from "slate";
 import Slide from "../../components/slide/Slide";
 import SlidePreviewBar from "../../components/slide-preview/slide-preview-bar/SlidePreviewBar";
-import Toolbar from "../../components/toolbar/Toolbar";
-import TextToolbar from "../../components/slide/slide-tools/text-toolbar/TextToolbar";
 import {
     SlideViewWrapper,
     SlidePreviewWrapper,
@@ -13,6 +11,8 @@ import {
     MainSlide,
     MainSlideWrapper
 } from "./SlideView.styles";
+import TextToolbar from "../../components/slide/slide-tools/text-toolbar/TextToolbar";
+import Toolbar from "../../components/toolbar/Toolbar";
 
 class SlideView extends Component {
     componentWillMount() {

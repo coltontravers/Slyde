@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { storiesOf } from "@storybook/react";
 import { specs } from "storybook-addon-specifications";
-import { wrapWithStoreAndProps } from "../../config/store";
-import tests from "./Slide.test";
 import Slide from "./Slide";
+import tests from "./Slide.test";
+import { wrapWithStoreAndProps } from "../../config/store";
 
 const stories = storiesOf("Slide", module);
 
