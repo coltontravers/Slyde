@@ -94,7 +94,7 @@ class TextInput extends Component {
                     autoFocus
                     placeholder="Enter some rich text..."
                     ref={this.ref}
-                    value={this.props.editorData}
+                    value={this.props.editorValue}
                     onChange={this.onChange}
                     onKeyDown={this.onKeyDown}
                     renderNode={this.renderNode}
@@ -119,7 +119,7 @@ TextInput.defaultProps = {
 
 TextInput.propTypes = {
     store: PropTypes.object.isRequired,
-    editorData: PropTypes.object.isRequired,
+    editorValue: PropTypes.object.isRequired,
     dimensions: PropTypes.object,
     position: PropTypes.object,
     fullSlide: PropTypes.bool

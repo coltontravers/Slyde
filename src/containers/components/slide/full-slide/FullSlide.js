@@ -11,19 +11,18 @@ class FullSlide extends Component {
             store: { activeSlide }
         } = this.props;
 
+        console.log("FULL SLIDE PROPS:", this.props);
+
         return (
             <TextInputWrapper>
                 {activeSlide &&
-                    activeSlide.content.text.map((textInfo, index) => {
-                        console.log("FULL SLIDE EDITOR:", textInfo.editor);
-                        return (
-                            <TextInput
-                                key={index}
-                                fullSlide
-                                editorData={textInfo.editor}
-                            />
-                        );
-                    })}
+                    activeSlide.content.text.map((textInfo, index) => (
+                        <TextInput
+                            key={index}
+                            fullSlide
+                            editorData={textInfo.editor}
+                        />
+                    ))}
             </TextInputWrapper>
         );
     }

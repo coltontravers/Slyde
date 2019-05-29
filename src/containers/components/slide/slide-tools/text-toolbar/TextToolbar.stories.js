@@ -1,36 +1,43 @@
 /* eslint-disable import/no-extraneous-dependencies */
-/*
+import { storiesOf } from "@storybook/react";
+import { observer } from "mobx-react";
+import React, { Component } from "react";
+import { specs } from "storybook-addon-specifications";
+import Store, { wrapWithStoreAndProps } from "../../../../config/store";
+import tests from "./TextToolbar.test";
+import TextToolbar from "./TextToolbar";
+import TextInput from "../text-input/TextInput";
 
-To test this right, I have to render the text input before this.
+const stories = storiesOf("Text Toolbar", module);
 
-*/
+stories.add("Default Text Toolbar", () => {
+    class TextToolbarWrapper extends Component {
+        render() {
+            return (
+                <div>
+                    {wrapWithStoreAndProps(
+                        [TextToolbar, TextInput],
+                        [
+                            {
+                                editorValue:
+                                    Store.slides[0].content.text[0].editor
+                            },
+                            {
+                                editorValue:
+                                    Store.slides[0].content.text[0].editor,
+                                fullSlide: true
+                            }
+                        ],
+                        Store
+                    )}
+                </div>
+            );
+        }
+    }
 
-// import { storiesOf } from "@storybook/react";
-// import React from "react";
-// import { specs } from "storybook-addon-specifications";
-// import store, { wrapWithStoreAndProps } from "../../../../config/store";
-// import tests from "./TextToolbar.test";
-// import TextToolbar from "./TextToolbar";
-// import TextInput from "../text-input/TextInput";
+    const ObserverComponent = observer(TextToolbarWrapper);
 
-// const stories = storiesOf("Text Toolbar", module);
+    specs(() => tests);
 
-// stories.add("Default Text Toolbar", () => {
-//     const toolbarProps = {
-//         value: {
-//             activeMarks: {},
-//             blocks: {},
-//             document: {},
-//             activeEditor: "test"
-//         },
-//         editor: store.activeEditor
-//     };
-//     const Component = (
-//         <div>
-//             <TextInput>{wrapWithStoreAndProps(TextToolbar)}</TextInput>
-//         </div>
-//     );
-//     specs(() => tests);
-
-//     return Component;
-// });
+    return <ObserverComponent />;
+});

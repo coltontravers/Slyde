@@ -60,14 +60,14 @@ const textToolbarButtons = [
 
 class TextToolbar extends Component {
     hasBlock = type => {
-        const { value } = this.props;
+        const { editorValue } = this.props;
 
-        return value.blocks.some(node => node.type === type);
+        return editorValue.blocks.some(node => node.type === type);
     };
 
     hasMark = type => {
-        const { value } = this.props;
-        return value.activeMarks.some(mark => mark.type === type);
+        const { editorValue } = this.props;
+        return editorValue.activeMarks.some(mark => mark.type === type);
     };
 
     onClickBlock = (event, type) => {
@@ -139,7 +139,7 @@ class TextToolbar extends Component {
 
         if (["numbered-list", "bulleted-list"].includes(type)) {
             const {
-                value: { document, blocks }
+                editorValue: { document, blocks }
             } = this.props;
 
             if (blocks.size > 0) {
@@ -177,10 +177,6 @@ class TextToolbar extends Component {
     };
 
     render() {
-        const { data } = this.props.value;
-        const undos = data.get("undos");
-        const redos = data.get("redos");
-
         return (
             <Wrapper>
                 <PrimaryFormatButtons>
@@ -212,14 +208,9 @@ class TextToolbar extends Component {
     }
 }
 
-TextToolbar.defaultProps = {
-    activeEditor: {}
-};
-
 TextToolbar.propTypes = {
     store: PropTypes.object.isRequired,
-    value: PropTypes.object.isRequired,
-    activeEditor: PropTypes.object
+    editorValue: PropTypes.object.isRequired
 };
 
 export default inject("store")(observer(TextToolbar));

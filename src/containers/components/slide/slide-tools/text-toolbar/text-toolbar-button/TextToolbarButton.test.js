@@ -1,22 +1,22 @@
-/* eslint-disable import/no-extraneous-dependencies,import/no-unresolved */
-import { mount } from "enzyme";
-import expect from "expect";
-import { describe, it, beforeEach } from "storybook-addon-specifications";
-import { wrapWithStoreAndProps } from "../../../../../config/store";
-import TextToolbarButton from "./TextToolbarButton";
+// /* eslint-disable import/no-extraneous-dependencies,import/no-unresolved */
+// import { mount } from "enzyme";
+// import expect from "expect";
+// import { describe, it, beforeEach } from "storybook-addon-specifications";
+// import { wrapWithStoreAndProps } from "../../../../../config/store";
+// import TextToolbarButton from "./TextToolbarButton";
 
-const tests = describe("<TextToolbar />", () => {
-    let wrapper;
-    let shallowComponent;
+// const tests = describe("<TextToolbar />", () => {
+//     let wrapper;
+//     let shallowComponent;
 
-    beforeEach(() => {
-        wrapper = wrapWithStoreAndProps(TextToolbarButton, { slideIndex: 0 });
-        shallowComponent = mount(wrapper);
-    });
+//     beforeEach(() => {
+//         wrapper = wrapWithStoreAndProps(TextToolbarButton, { slideIndex: 0 });
+//         shallowComponent = mount(wrapper);
+//     });
 
-    it("Render Text Toolbar Button", () => {
-        expect(shallowComponent.exists()).toBeTruthy();
-    });
-});
+//     it("Render Text Toolbar Button", () => {
+//         expect(shallowComponent.exists()).toBeTruthy();
+//     });
+// });
 
-export default tests;
+// export default tests;

@@ -1,4 +1,8 @@
 import { decorate, observable, computed, action } from "mobx";
+import { inject, observer, Provider } from "mobx-react";
+import React from "react";
+// import { withRouter } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import Plain from "slate-plain-serializer";
 import { Value } from "slate";
 
@@ -67,60 +71,6 @@ class Store {
                 ]
             }
         }
-        // {
-        //     id: "2", // Uuid(),
-        //     componentType: "TextInput",
-        //     position: {
-        //         x: "100px",
-        //         y: "100px"
-        //     },
-        //     dimensions: {
-        //         height: "50px",
-        //         width: "50px"
-        //     },
-        //     content: {
-        //         text: [
-        //             {
-        //                 editor: Value.fromJSON({
-        //                     object: "value",
-        //                     document: {
-        //                         object: "document",
-        //                         nodes: [
-        //                             {
-        //                                 object: "block",
-        //                                 type: "paragraph",
-        //                                 nodes: [
-        //                                     {
-        //                                         object: "text",
-        //                                         marks: [],
-        //                                         text: "This is the 2nd slide!"
-        //                                     }
-        //                                 ]
-        //                             },
-        //                             {
-        //                                 object: "block",
-        //                                 type: "paragraph",
-        //                                 nodes: [
-        //                                     {
-        //                                         object: "text",
-        //                                         marks: [],
-        //                                         text:
-        //                                             "Try it out for yourself! Copy and paste some rendered HTML content (not the source code) from another site into this editor."
-        //                                     }
-        //                                 ]
-        //                             }
-        //                         ]
-        //                     }
-        //                 }),
-        //                 color: "white",
-        //                 fontSize: "12",
-        //                 bold: false,
-        //                 italics: false,
-        //                 underline: false
-        //             }
-        //         ]
-        //     }
-        // }
     ];
 
     toolbar = {
@@ -171,5 +121,39 @@ decorate(Store, {
     changePage: action,
     updateSlideText: action
 });
+
+export const wrapWithStoreAndProps = (storyComponents, props, newStore) => {
+    if (newStore) {
+        return (
+            <Router>
+                <Provider store={newStore}>
+                    <div>
+                        {storyComponents.map((component, index) => {
+                            const Component = inject("store")(
+                                observer(component)
+                            );
+
+                            return <Component {...props[index]} key={index} />;
+                        })}
+                    </div>
+                </Provider>
+            </Router>
+        );
+    }
+
+    return (
+        <Router>
+            <Provider store={new Store()}>
+                <div>
+                    {storyComponents.map((component, index) => {
+                        const Component = inject("store")(observer(component));
+
+                        return <Component {...props[index]} key={index} />;
+                    })}
+                </div>
+            </Provider>
+        </Router>
+    );
+};
 
 export default new Store();

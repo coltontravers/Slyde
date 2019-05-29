@@ -12,9 +12,7 @@ window.expect = expect;
 configureEnzyme({ adapter: new Adapter() });
 
 // automatically import all files ending in *.stories.js
-// const req = require.context("../stories", true, /\.stories\.js$/);
-// const req = require.context("../src/containers", true, /\.stories\.js$/);
-const req = require.context("../src", true, /stories\.js$/);
+const req = require.context("../src/", true, /stories\.js$/);
 addDecorator(withInfo);
 function loadStories() {
     req.keys().forEach(filename => req(filename));

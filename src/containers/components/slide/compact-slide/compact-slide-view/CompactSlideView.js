@@ -101,8 +101,8 @@ class CompactSlideView extends Component {
         this.setState({
             text: slide.content.text.map((textInfo, index) => {
                 const textEditor = textInfo.editor;
-                const textContent = serializer.deserialize(textEditor);
-                console.log("DESERIAL:", textContent.toJSON());
+                // const textContent = serializer.deserialize(textEditor);
+                // console.log("DESERIAL:", textContent.toJSON());
 
                 // This below does work correctly.
                 // It appears that the value actually has to be json, and not a real Value.
@@ -146,7 +146,7 @@ class CompactSlideView extends Component {
                     textInfo.editor.toJSON()
                 );
 
-                const serial = serializer.serialize(textContent.toJSON());
+                // const serial = serializer.serialize(textContent.toJSON());
 
                 // const serial = serializer.serialize({
                 //     object: "value",
@@ -169,7 +169,7 @@ class CompactSlideView extends Component {
                 //         ]
                 //     }
                 // });
-                console.log("CONVERSIONS:", serial);
+                // console.log("CONVERSIONS:", serial);
 
                 // return <div key={index}>{serial}</div>;
 
