@@ -114,12 +114,13 @@ TextInput.defaultProps = {
         x: "",
         y: "0"
     },
-    fullSlide: false
+    fullSlide: false,
+    editorValue: null
 };
 
 TextInput.propTypes = {
     store: PropTypes.object.isRequired,
-    editorValue: PropTypes.object.isRequired,
+    editorValue: PropTypes.object,
     dimensions: PropTypes.object,
     position: PropTypes.object,
     fullSlide: PropTypes.bool

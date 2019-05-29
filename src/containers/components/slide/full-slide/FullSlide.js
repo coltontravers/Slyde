@@ -1,7 +1,6 @@
 import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { Value } from "slate";
 import { TextInputWrapper } from "./FullSlide.styles";
 import TextInput from "../slide-tools/text-input/TextInput";
 
@@ -11,8 +10,6 @@ class FullSlide extends Component {
             store: { activeSlide }
         } = this.props;
 
-        console.log("FULL SLIDE PROPS:", this.props);
-
         return (
             <TextInputWrapper>
                 {activeSlide &&
@@ -20,7 +17,7 @@ class FullSlide extends Component {
                         <TextInput
                             key={index}
                             fullSlide
-                            editorData={textInfo.editor}
+                            editorValue={textInfo.editor}
                         />
                     ))}
             </TextInputWrapper>

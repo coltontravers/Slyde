@@ -1,9 +1,11 @@
 // This file needs to have reactive functionality added to it.
-import { inject, observer } from "mobx-react";
+
+import { inject, observer, Provider } from "mobx-react";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import Html from "slate-html-serializer";
 import { Value } from "slate";
+import Store from "../../../../config/store";
 
 const elementTypes = {
     paragraph: "p"
@@ -91,95 +93,51 @@ const rules = [
 const serializer = new Html({ rules });
 
 class CompactSlideView extends Component {
-    state = {
-        text: []
-    };
-
-    componentDidMount() {
-        const slide = this.props.store.slides[this.props.slideNumber];
-
-        this.setState({
-            text: slide.content.text.map((textInfo, index) => {
-                const textEditor = textInfo.editor;
-                // const textContent = serializer.deserialize(textEditor);
-                // console.log("DESERIAL:", textContent.toJSON());
-
-                // This below does work correctly.
-                // It appears that the value actually has to be json, and not a real Value.
-                // But converting the Value to json seems to make it not work for some reason.
-
-                // OK, for some reason when converted to a Value (which is by default right now), the "marks" turn into "leaves".
-                // Need to figure out why this happens and how to prevent it. Custom normalizer, maybe?
-
-                console.log(
-                    "COMPARE:",
-                    {
-                        object: "value",
-                        document: {
-                            object: "document",
-                            nodes: [
-                                {
-                                    object: "block",
-                                    type: "paragraph",
-                                    nodes: [
-                                        {
-                                            object: "text",
-                                            text:
-                                                "By default, pasting content into a Slate editor will use the content's plain text representation. This is fine for some use cases, but sometimes you want to actually be able to paste in content and have it parsed into blocks and links and things. To do this, you need to add a parser that triggers on paste. This is an example of doing exactly that!"
-                                        }
-                                    ]
-                                },
-                                {
-                                    object: "block",
-                                    type: "paragraph",
-                                    nodes: [
-                                        {
-                                            object: "text",
-                                            text:
-                                                "Try it out for yourself! Copy and paste some rendered HTML content (not the source code) from another site into this editor."
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    },
-                    textInfo.editor.toJSON()
-                );
-
-                // const serial = serializer.serialize(textContent.toJSON());
-
-                // const serial = serializer.serialize({
-                //     object: "value",
-                //     document: {
-                //         object: "document",
-                //         nodes: [
-                //             {
-                //                 object: "block",
-                //                 type: "paragraph",
-                //                 marks: [],
-                //                 nodes: [
-                //                     {
-                //                         object: "text",
-                //                         marks: [],
-                //                         text:
-                //                             "By default, pasting content into a Slate editor will use the content's plain text representation. This is fine for some use cases, but sometimes you want to actually be able to paste in content and have it parsed into blocks and links and things. To do this, you need to add a parser that triggers on paste. This is an example of doing exactly that!"
-                //                     }
-                //                 ]
-                //             }
-                //         ]
-                //     }
-                // });
-                // console.log("CONVERSIONS:", serial);
-
-                // return <div key={index}>{serial}</div>;
-
-                return <div />;
-            })
-        });
-    }
-
     render() {
-        const { text } = this.state;
+        const slide = Store.slides[this.props.slideNumber];
+
+        console.log("THE SLIDE:", slide);
+
+        const text = slide.content.text.map((textInfo, index) => {
+            // const textEditor = textInfo.editor;
+            // const textContent = textInfo.editor.toJSON();
+            // console.log("THE TEXT INFO FOR:", index, textInfo);
+            // console.log(
+            //     "COMPARE:",
+            //     serializer.serialize({
+            //         object: "value",
+            //         document: {
+            //             object: "document",
+            //             nodes: [
+            //                 {
+            //                     object: "block",
+            //                     type: "paragraph",
+            //                     nodes: [
+            //                         {
+            //                             object: "text",
+            //                             text:
+            //                                 "By default, pasting content into a Slate editor will use the content's plain text representation. This is fine for some use cases, but sometimes you want to actually be able to paste in content and have it parsed into blocks and links and things. To do this, you need to add a parser that triggers on paste. This is an example of doing exactly that!"
+            //                         }
+            //                     ]
+            //                 },
+            //                 {
+            //                     object: "block",
+            //                     type: "paragraph",
+            //                     nodes: [
+            //                         {
+            //                             object: "text",
+            //                             text:
+            //                                 "Try it out for yourself! Copy and paste some rendered HTML content (not the source code) from another site into this editor."
+            //                         }
+            //                     ]
+            //                 }
+            //             ]
+            //         }
+            //     })
+            // );
+
+            return serializer.serialize(textInfo.editor);
+        });
 
         return (
             <div>
@@ -190,7 +148,7 @@ class CompactSlideView extends Component {
                             // Replace this with a better solution.
                             // eslint-disable-next-line react/no-danger
                             dangerouslySetInnerHTML={{
-                                __html: Text.props.children
+                                __html: Text
                             }}
                         />
                     );

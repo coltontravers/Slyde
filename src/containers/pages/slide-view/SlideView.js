@@ -1,7 +1,6 @@
 import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { Value } from "slate";
 import Slide from "../../components/slide/Slide";
 import SlidePreviewBar from "../../components/slide-preview/slide-preview-bar/SlidePreviewBar";
 import {
@@ -28,10 +27,11 @@ class SlideView extends Component {
 
     render() {
         const {
-            store: { activeEditor, activePage, slides }
+            store: { activePage, slides }
         } = this.props;
 
-        const slide = slides[Number(activePage) - 1].content.text[0].editor;
+        const editorValue =
+            slides[Number(activePage) - 1].content.text[0].editor;
 
         return (
             <SlideViewWrapper>
@@ -39,17 +39,14 @@ class SlideView extends Component {
                     <Toolbar />
                 </div>
                 <Slides>
-                    {/* <SlidePreviewBar>
+                    <SlidePreviewBar>
                         <SlidePreviewWrapper>
                             <SlidePreviewBar />
                         </SlidePreviewWrapper>
-                    </SlidePreviewBar> */}
+                    </SlidePreviewBar>
 
                     <MainSlideWrapper>
-                        <TextToolbar
-                            value={slide}
-                            activeEditor={activeEditor}
-                        />
+                        <TextToolbar editorValue={editorValue} />
                         <MainSlide>
                             <Slide full />
                         </MainSlide>

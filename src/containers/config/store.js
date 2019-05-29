@@ -157,3 +157,108 @@ export const wrapWithStoreAndProps = (storyComponents, props, newStore) => {
 };
 
 export default new Store();
+
+// import { decorate, observable } from "mobx";
+// import { Value } from "slate";
+
+// class Store {
+//     activeEditor = null;
+
+//     activePage = "1";
+
+//     slides = [
+//         {
+//             id: "1", // Uuid(),
+//             componentType: "TextInput",
+//             position: {
+//                 x: "100px",
+//                 y: "100px"
+//             },
+//             dimensions: {
+//                 height: "50px",
+//                 width: "50px"
+//             },
+//             content: {
+//                 text: [
+//                     {
+//                         editor: Value.fromJSON({
+//                             object: "value",
+//                             document: {
+//                                 object: "document",
+//                                 nodes: [
+//                                     {
+//                                         object: "block",
+//                                         type: "paragraph",
+//                                         nodes: [
+//                                             {
+//                                                 object: "text",
+//                                                 text:
+//                                                     "By default, pasting content into a Slate editor will use the content's plain text representation. This is fine for some use cases, but sometimes you want to actually be able to paste in content and have it parsed into blocks and links and things. To do this, you need to add a parser that triggers on paste. This is an example of doing exactly that!"
+//                                             }
+//                                         ]
+//                                     },
+//                                     {
+//                                         object: "block",
+//                                         type: "paragraph",
+//                                         nodes: [
+//                                             {
+//                                                 object: "text",
+//                                                 text:
+//                                                     "Try it out for yourself! Copy and paste some rendered HTML content (not the source code) from another site into this editor."
+//                                             }
+//                                         ]
+//                                     }
+//                                 ]
+//                             }
+//                         }),
+//                         color: "white",
+//                         fontSize: "12",
+//                         bold: false,
+//                         italics: false,
+//                         underline: false
+//                     }
+//                 ]
+//             }
+//         }
+//     ];
+// }
+
+// decorate(Store, {
+//     slides: observable
+// });
+
+// export const wrapWithStoreAndProps = (storyComponents, props, newStore) => {
+//     if (newStore) {
+//         return (
+//             <Router>
+//                 <Provider store={newStore}>
+//                     <div>
+//                         {storyComponents.map((component, index) => {
+//                             const Component = inject("store")(
+//                                 observer(component)
+//                             );
+
+//                             return <Component {...props[index]} key={index} />;
+//                         })}
+//                     </div>
+//                 </Provider>
+//             </Router>
+//         );
+//     }
+
+//     return (
+//         <Router>
+//             <Provider store={new Store()}>
+//                 <div>
+//                     {storyComponents.map((component, index) => {
+//                         const Component = inject("store")(observer(component));
+
+//                         return <Component {...props[index]} key={index} />;
+//                     })}
+//                 </div>
+//             </Provider>
+//         </Router>
+//     );
+// };
+
+// export default new Store();
