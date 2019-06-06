@@ -15,6 +15,7 @@ class BoxDragPreview extends Component {
         const { boxContent } = this.props;
         const { tickTock } = this.state;
 
+        // eslint-disable-next-line no-unused-expressions
         () => {
             const interval = setInterval(() => {
                 this.setState(!tickTock);

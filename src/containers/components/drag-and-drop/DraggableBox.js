@@ -4,13 +4,10 @@ import { DragSource } from "react-dnd";
 import { getEmptyImage } from "react-dnd-html5-backend";
 import ItemTypes from "./ItemTypes";
 import Box from "./Box";
-import { BoxWrapper, BoxDraggable } from "./DraggableBox.styles";
 
 function getStyles(props) {
-    const { left, top, isDragging } = props;
+    const { isDragging } = props;
     return {
-        // IE fallback: hide the real node using CSS when dragging
-        // because IE will ignore our custom "empty image" drag preview.
         opacity: isDragging ? 0 : 1,
         height: isDragging ? 0 : "",
         background: "silver"
