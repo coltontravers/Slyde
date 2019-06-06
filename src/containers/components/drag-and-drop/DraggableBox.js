@@ -6,19 +6,16 @@ import ItemTypes from "./ItemTypes";
 import Box from "./Box";
 import { BoxWrapper, BoxDraggable } from "./DraggableBox.styles";
 
-// function getStyles(props) {
-//     const { left, top, isDragging } = props;
-//     const transform = `translate3d(${left}px, ${top}px, 0)`;
-//     return {
-//         position: "absolute",
-//         transform,
-//         WebkitTransform: transform,
-//         // IE fallback: hide the real node using CSS when dragging
-//         // because IE will ignore our custom "empty image" drag preview.
-//         opacity: isDragging ? 0 : 1,
-//         height: isDragging ? 0 : ""
-//     };
-// }
+function getStyles(props) {
+    const { left, top, isDragging } = props;
+    return {
+        // IE fallback: hide the real node using CSS when dragging
+        // because IE will ignore our custom "empty image" drag preview.
+        opacity: isDragging ? 0 : 1,
+        height: isDragging ? 0 : "",
+        background: "silver"
+    };
+}
 class DraggableBox extends Component {
     componentDidMount() {
         const { connectDragPreview } = this.props;
@@ -34,12 +31,13 @@ class DraggableBox extends Component {
     }
 
     render() {
-        const { boxContent, connectDragSource } = this.props;
+        const { boxContent, connectDragSource, isDragging } = this.props;
         return (
-            <div id="testing-box-draggable" style={{ position: "relative" }}>
+            <div style={getStyles(this.props)}>
                 <Box
                     boxContent={boxContent}
                     connectDragSource={connectDragSource}
+                    isDragging={isDragging}
                 />
             </div>
         );
@@ -49,7 +47,8 @@ class DraggableBox extends Component {
 DraggableBox.propTypes = {
     boxContent: PropTypes.object.isRequired,
     connectDragSource: PropTypes.func.isRequired,
-    connectDragPreview: PropTypes.func.isRequired
+    connectDragPreview: PropTypes.func.isRequired,
+    isDragging: PropTypes.bool.isRequired
 };
 
 export default DragSource(

@@ -21,14 +21,6 @@ class Store {
         {
             id: "1", // Uuid(),
             componentType: "TextInput",
-            position: {
-                x: "100px",
-                y: "100px"
-            },
-            dimensions: {
-                height: "50px",
-                width: "50px"
-            },
             content: [
                 {
                     id: Uuid(),
@@ -67,8 +59,10 @@ class Store {
                     bold: false,
                     italics: false,
                     underline: false,
-                    top: 0,
-                    left: 0,
+                    top: 20,
+                    left: 20,
+                    width: "100%",
+                    height: "auto",
                     title: "Drag me around", // remove later
                     contentType: "textEditor"
                 }

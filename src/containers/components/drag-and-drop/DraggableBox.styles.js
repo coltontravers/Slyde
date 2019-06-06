@@ -9,5 +9,5 @@ export const BoxDraggable = styled.div`
     height: 100%;
     width: 100%;
     background: grey;
-    cursor: grab;
+    cursor: move;
 `;

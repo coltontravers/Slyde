@@ -23,7 +23,7 @@ class BoxHandle extends Component {
             left: `-50px`,
             position: "absolute",
             background: "grey",
-            cursor: "grab"
+            cursor: "move"
         };
 
         if (connectDragSource) {

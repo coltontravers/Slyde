@@ -1,4 +1,3 @@
-import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { DragDropContextProvider } from "react-dnd";
@@ -13,12 +12,14 @@ class DragAroundCustomDragLayer extends Component {
 
         return (
             <DragNDropWrapper>
-                <DragDropContextProvider backend={HTML5Backend}>
+                <DragDropContextProvider
+                    backend={HTML5Backend}
+                    style={{ position: "relative" }}
+                >
                     <Container slideBoxes={slideBoxes} />
                     <CustomDragLayer slideBoxes={slideBoxes} />
                 </DragDropContextProvider>
             </DragNDropWrapper>
-            // <div />
         );
     }
 }
@@ -27,5 +28,4 @@ DragAroundCustomDragLayer.propTypes = {
     slideBoxes: PropTypes.array.isRequired
 };
 
-// export default observer(DragAroundCustomDragLayer);
 export default DragAroundCustomDragLayer;

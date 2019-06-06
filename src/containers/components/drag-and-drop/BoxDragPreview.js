@@ -1,11 +1,9 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import Box from "./Box";
+import DragPreviewBox from "./DragPreviewBox";
 
 const styles = {
-    // display: "inline-block",
-    // transform: "rotate(-7deg)",
-    // WebkitTransform: "rotate(-7deg)"
+    display: "inline-block"
 };
 
 class BoxDragPreview extends Component {
@@ -14,6 +12,7 @@ class BoxDragPreview extends Component {
     };
 
     render() {
+        const { boxContent } = this.props;
         const { tickTock } = this.state;
 
         () => {
@@ -24,8 +23,9 @@ class BoxDragPreview extends Component {
         };
 
         return (
-            <div>
-                <Box style={styles} boxContent={this.props.boxContent} />
+            <div style={styles}>
+                {/* <h1>Dragging me</h1> */}
+                <DragPreviewBox boxContent={boxContent} />
             </div>
         );
     }

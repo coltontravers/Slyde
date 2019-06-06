@@ -1,9 +1,14 @@
 import styled from "styled-components";
 
 export const BoxWrapper = styled.div`
-    top: ${props => `${props.boxContent.top}px`};
-    left: ${props => `${props.boxContent.left}px`};
+    transform: ${props =>
+        `translate3d(${props.boxContent.left}px, ${
+            props.boxContent.top
+        }px, 0)`};
+        height: ${props => `${props.boxContent.height}`}
+            width: ${props => `${props.boxContent.width}`}
     position: absolute;
+    opacity: ${props => (props.isDragging ? 0 : 1)};
 `;
 
 export const BoxItem = styled.div`
@@ -21,6 +26,6 @@ export const BoxHandle = styled.div`
     height: 100%;
     width: 100%;
     z-index: -1;
-    cursor: grab;
+    cursor: move;
     border: dotted;
 `;
