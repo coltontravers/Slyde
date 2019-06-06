@@ -1,10 +1,10 @@
 // This file needs to have reactive functionality added to it.
 
-import { inject, observer, Provider } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import Html from "slate-html-serializer";
-import { Value } from "slate";
+// import { Value } from "slate";
 import Store from "../../../../config/store";
 
 const elementTypes = {

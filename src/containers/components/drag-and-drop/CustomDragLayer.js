@@ -6,14 +6,14 @@ import BoxDragPreview from "./BoxDragPreview";
 import snapToGrid from "./snapToGrid";
 
 const layerStyles = {
-    position: "fixed",
+    position: "absolute",
     pointerEvents: "none",
     zIndex: 100,
     left: 0,
     top: 0,
     width: "100%",
     height: "100%",
-    background: "blue"
+    background: "whitesmoke"
 };
 function getItemStyles(props) {
     const { initialOffset, currentOffset } = props;
@@ -38,6 +38,7 @@ function getItemStyles(props) {
 }
 const CustomDragLayer = props => {
     const { item, itemType, isDragging } = props;
+    console.log("the drag item:", props);
     function renderItem() {
         switch (itemType) {
             case ItemTypes.BOX:
@@ -50,8 +51,9 @@ const CustomDragLayer = props => {
         return null;
     }
     return (
-        <div style={layerStyles}>
+        <div id="CUSTOM-DRAG-LAYER" style={layerStyles}>
             <div style={getItemStyles(props)}>{renderItem()}</div>
+            {/* <div>{renderItem()}</div> */}
         </div>
     );
 };

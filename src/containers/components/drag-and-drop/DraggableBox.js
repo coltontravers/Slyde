@@ -4,6 +4,7 @@ import { DragSource } from "react-dnd";
 import { getEmptyImage } from "react-dnd-html5-backend";
 import ItemTypes from "./ItemTypes";
 import Box from "./Box";
+import { BoxWrapper, BoxDraggable } from "./DraggableBox.styles";
 
 // function getStyles(props) {
 //     const { left, top, isDragging } = props;
@@ -34,18 +35,16 @@ class DraggableBox extends Component {
 
     render() {
         const { boxContent, connectDragSource } = this.props;
-        return connectDragSource(
-            <div>
-                <Box boxContent={boxContent} />
+        return (
+            <div id="testing-box-draggable" style={{ position: "relative" }}>
+                <Box
+                    boxContent={boxContent}
+                    connectDragSource={connectDragSource}
+                />
             </div>
         );
     }
 }
-
-// DraggableBox.defaultProps = {
-//     item: null,
-//     itemType: null
-// };
 
 DraggableBox.propTypes = {
     boxContent: PropTypes.object.isRequired,

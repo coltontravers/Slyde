@@ -1,7 +1,6 @@
-import { decorate, observable, computed, action, keepAlive } from "mobx";
+import { decorate, observable, computed, action } from "mobx";
 import { inject, observer, Provider } from "mobx-react";
 import React from "react";
-// import { withRouter } from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
 import Plain from "slate-plain-serializer";
 import { Value } from "slate";
@@ -68,8 +67,8 @@ class Store {
                     bold: false,
                     italics: false,
                     underline: false,
-                    top: 20,
-                    left: 80,
+                    top: 0,
+                    left: 0,
                     title: "Drag me around", // remove later
                     contentType: "textEditor"
                 }

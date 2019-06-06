@@ -2,10 +2,10 @@ import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import Slide from "../../components/slide/Slide";
-import SlidePreviewBar from "../../components/slide-preview/slide-preview-bar/SlidePreviewBar";
+// import SlidePreviewBar from "../../components/slide-preview/slide-preview-bar/SlidePreviewBar";
 import {
     SlideViewWrapper,
-    SlidePreviewWrapper,
+    // SlidePreviewWrapper,
     Slides,
     MainSlide,
     MainSlideWrapper

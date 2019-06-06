@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import Box from "./Box";
 
 const styles = {
-    display: "inline-block",
-    transform: "rotate(-7deg)",
-    WebkitTransform: "rotate(-7deg)"
+    // display: "inline-block",
+    // transform: "rotate(-7deg)",
+    // WebkitTransform: "rotate(-7deg)"
 };
 
 class BoxDragPreview extends Component {
@@ -24,8 +24,8 @@ class BoxDragPreview extends Component {
         };
 
         return (
-            <div style={styles}>
-                <Box boxContent={this.props.boxContent} />
+            <div>
+                <Box style={styles} boxContent={this.props.boxContent} />
             </div>
         );
     }
