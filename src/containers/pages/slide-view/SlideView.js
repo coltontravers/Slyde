@@ -30,8 +30,7 @@ class SlideView extends Component {
             store: { activePage, slides }
         } = this.props;
 
-        const editorValue =
-            slides[Number(activePage) - 1].content.text[0].editor;
+        const editorValue = slides[Number(activePage) - 1].content[0].editor;
 
         return (
             <SlideViewWrapper>
@@ -39,11 +38,11 @@ class SlideView extends Component {
                     <Toolbar />
                 </div>
                 <Slides>
-                    <SlidePreviewBar>
+                    {/* <SlidePreviewBar>
                         <SlidePreviewWrapper>
                             <SlidePreviewBar />
                         </SlidePreviewWrapper>
-                    </SlidePreviewBar>
+                    </SlidePreviewBar> */}
 
                     <MainSlideWrapper>
                         <TextToolbar editorValue={editorValue} />

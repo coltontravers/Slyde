@@ -8,7 +8,7 @@
 // const stories = storiesOf("Slide Preview", module);
 
 // stories.add("Default Slide Preview", () => {
-//     const Component = wrapWithStoreAndProps(SlidePreview);
+//     const Component = wrapWithStoreAndProps([SlidePreview], [{}]);
 //     specs(() => tests);
 
 //     return Component;

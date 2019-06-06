@@ -20,11 +20,11 @@ stories.add("Default Text Toolbar", () => {
                         [
                             {
                                 editorValue:
-                                    Store.slides[0].content.text[0].editor
+                                    Store.slides[0].content[0].editor
                             },
                             {
                                 editorValue:
-                                    Store.slides[0].content.text[0].editor,
+                                    Store.slides[0].content[0].editor,
                                 fullSlide: true
                             }
                         ],

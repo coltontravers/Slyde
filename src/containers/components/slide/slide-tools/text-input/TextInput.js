@@ -111,8 +111,8 @@ TextInput.defaultProps = {
         height: "100%"
     },
     position: {
-        x: "",
-        y: "0"
+        x: "0px",
+        y: "0px"
     },
     fullSlide: false,
     editorValue: null

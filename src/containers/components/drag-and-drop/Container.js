@@ -1,0 +1,75 @@
+import { inject } from "mobx-react";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { DropTarget } from "react-dnd";
+import ItemTypes from "./ItemTypes";
+import DraggableBox from "./DraggableBox";
+import snapToGrid from "./snapToGrid";
+
+class Container extends Component {
+    moveBox(slideId, left, top) {
+        const {
+            store: { updateSlideData },
+            slideBoxes
+        } = this.props;
+
+        const slidesData = slideBoxes;
+
+        slidesData[0] = { ...slidesData[0], left, top };
+
+        updateSlideData(slideId, slidesData);
+    }
+
+    renderBox(item, index, connectDropTarget) {
+        return (
+            <DraggableBox
+                key={index}
+                id={index}
+                boxContent={item}
+                connectDropTarget={connectDropTarget}
+            />
+        );
+    }
+
+    render() {
+        const { connectDropTarget, slideBoxes } = this.props;
+
+        return connectDropTarget(
+            <div style={{ height: "100%", width: "100%" }}>
+                {slideBoxes.map((item, index) =>
+                    this.renderBox(item, index, connectDropTarget)
+                )}
+            </div>
+        );
+    }
+}
+
+Container.propTypes = {
+    store: PropTypes.object.isRequired,
+    slideBoxes: PropTypes.array.isRequired,
+    connectDropTarget: PropTypes.func.isRequired
+};
+
+export default inject("store")(
+    DropTarget(
+        ItemTypes.BOX,
+        {
+            drop(props, monitor, component) {
+                if (!component) {
+                    return;
+                }
+                const delta = monitor.getDifferenceFromInitialOffset();
+                const item = monitor.getItem();
+                let left = Math.round(item.left + delta.x);
+                let top = Math.round(item.top + delta.y);
+                if (props.snapToGrid) {
+                    [left, top] = snapToGrid(left, top);
+                }
+                component.moveBox(item.id, left, top);
+            }
+        },
+        connect => ({
+            connectDropTarget: connect.dropTarget()
+        })
+    )(Container)
+);

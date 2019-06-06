@@ -1,26 +1,26 @@
-// /* eslint-disable import/no-extraneous-dependencies,import/no-unresolved */
-// import { mount } from "enzyme";
-// import expect from "expect";
-// import { describe, it, beforeEach } from "storybook-addon-specifications";
-// import FullSlide from "./FullSlide";
-// import { wrapWithStoreAndProps } from "../../../config/store";
+/* eslint-disable import/no-extraneous-dependencies,import/no-unresolved */
+import { mount } from "enzyme";
+import expect from "expect";
+import { describe, it, beforeEach } from "storybook-addon-specifications";
+import FullSlide from "./FullSlide";
+import Store, { wrapWithStoreAndProps } from "../../../config/store";
 
-// const tests = describe("<FullSlide />", () => {
-//     let wrapper;
-//     let shallowComponent;
+const tests = describe("<FullSlide />", () => {
+    let wrapper;
+    let shallowComponent;
 
-//     beforeEach(() => {
-//         wrapper = wrapWithStoreAndProps(FullSlide, { full: true });
-//         shallowComponent = mount(wrapper);
-//     });
+    beforeEach(() => {
+        wrapper = wrapWithStoreAndProps([FullSlide], [{}], Store);
+        shallowComponent = mount(wrapper);
+    });
 
-//     it("Render FullSlide", () => {
-//         expect(shallowComponent.exists()).toBeTruthy();
-//     });
+    // it("Render FullSlide", () => {
+    //     expect(shallowComponent.exists()).toBeTruthy();
+    // });
 
-//     it("Render TextInput in FullSlide", () => {
-//         expect(shallowComponent.find("TextInput").exists()).toBeTruthy();
-//     });
-// });
+    // it("Render TextInput in FullSlide", () => {
+    //     expect(shallowComponent.find("TextInput").exists()).toBeTruthy();
+    // });
+});
 
-// export default tests;
+export default tests;

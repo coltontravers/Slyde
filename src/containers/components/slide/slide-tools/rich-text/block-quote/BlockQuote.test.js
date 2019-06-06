@@ -2,27 +2,27 @@
 import { mount } from "enzyme";
 import expect from "expect";
 import { describe, it, beforeEach } from "storybook-addon-specifications";
-import Store, { wrapWithStoreAndProps } from "../../../../config/store";
-import TextToolbar from "./TextToolbar";
+import { wrapWithStoreAndProps } from "../../../../../config/store";
+import BlockQuote from "./BlockQuote";
 
-const tests = describe("<TextToolbar />", () => {
+const tests = describe("<BlockQuote />", () => {
     let wrapper;
     let shallowComponent;
 
     beforeEach(() => {
         wrapper = wrapWithStoreAndProps(
-            [TextToolbar],
+            [BlockQuote],
             [
                 {
-                    editorValue: Store.slides[0].content[0].editor
+                    children: "This is the text inside the blockquote."
                 }
-            ],
-            Store
+            ]
         );
+
         shallowComponent = mount(wrapper);
     });
 
-    it("Render Text Toolbar", () => {
+    it("Render BlockQuote", () => {
         expect(shallowComponent.exists()).toBeTruthy();
     });
 });

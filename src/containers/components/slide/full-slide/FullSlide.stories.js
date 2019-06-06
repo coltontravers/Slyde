@@ -1,15 +1,28 @@
-// /* eslint-disable import/no-extraneous-dependencies */
-// import { storiesOf } from "@storybook/react";
-// import { specs } from "storybook-addon-specifications";
-// import FullSlide from "./FullSlide";
-// import tests from "./FullSlide.test";
-// import { wrapWithStoreAndProps } from "../../../config/store";
+/* eslint-disable import/no-extraneous-dependencies */
+import { storiesOf } from "@storybook/react";
+import { observer } from "mobx-react";
+import React, { Component } from "react";
+import { specs } from "storybook-addon-specifications";
+import FullSlide from "./FullSlide";
+import tests from "./FullSlide.test";
+import Store, { wrapWithStoreAndProps } from "../../../config/store";
 
-// const stories = storiesOf("Full Slide", module);
+const stories = storiesOf("Full Slide", module);
 
-// stories.add("Default FullSlide", () => {
-//     const Component = wrapWithStoreAndProps(FullSlide, { store: {activeSlide: "5"} });
-//     specs(() => tests);
+stories.add("Default FullSlide", () => {
+    class FullSlideComponent extends Component {
+        render() {
+            return (
+                <div style={{ width: "600px", height: "600px" }}>
+                    {wrapWithStoreAndProps([FullSlide], [{}], Store)}
+                </div>
+            );
+        }
+    }
 
-//     return Component;
-// });
+    const ObserverComponent = observer(FullSlideComponent);
+
+    specs(() => tests);
+
+    return <ObserverComponent />;
+});

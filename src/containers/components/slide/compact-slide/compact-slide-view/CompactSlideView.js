@@ -96,9 +96,7 @@ class CompactSlideView extends Component {
     render() {
         const slide = Store.slides[this.props.slideNumber];
 
-        console.log("THE SLIDE:", slide);
-
-        const text = slide.content.text.map((textInfo, index) => {
+        const text = slide.content.map((textInfo, index) => {
             // const textEditor = textInfo.editor;
             // const textContent = textInfo.editor.toJSON();
             // console.log("THE TEXT INFO FOR:", index, textInfo);

@@ -2,7 +2,7 @@ import { inject, observer } from "mobx-react";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { TextInputWrapper } from "./FullSlide.styles";
-import TextInput from "../slide-tools/text-input/TextInput";
+import DragNDrop from "../../drag-and-drop/DragAndDrop";
 
 class FullSlide extends Component {
     render() {
@@ -12,14 +12,7 @@ class FullSlide extends Component {
 
         return (
             <TextInputWrapper>
-                {activeSlide &&
-                    activeSlide.content.text.map((textInfo, index) => (
-                        <TextInput
-                            key={index}
-                            fullSlide
-                            editorValue={textInfo.editor}
-                        />
-                    ))}
+                <DragNDrop slideBoxes={activeSlide.content} />
             </TextInputWrapper>
         );
     }
