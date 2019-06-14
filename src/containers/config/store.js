@@ -92,6 +92,8 @@ class Store {
         newSlides[slideIndex] = slideData;
 
         this.slides = newSlides;
+
+        console.log("new slide data:", this.slides);
     };
 
     updateSlideText = (slideId, editorData) => {

@@ -19,18 +19,22 @@ class BoxHandle extends Component {
         // };
 
         const styles = {
-            top: `-30px`,
-            left: `-50px`,
+            top: `-15px`,
+            left: `0px`,
             position: "absolute",
-            background: "grey",
+            background: "whitesmoke",
+            boxShadow: "0px 0px 2px 1px #dadada",
+            borderRadius: "50px 50px 0 0",
+            height: "10px",
+            width: "100%",
             cursor: "move"
         };
 
         if (connectDragSource) {
-            return connectDragSource(<div style={styles}>DRAG</div>);
+            return connectDragSource(<div style={styles} />);
         }
 
-        return <div style={styles}>DRAG</div>;
+        return <div style={styles} />;
     }
 }
 

@@ -103,6 +103,7 @@
         "mobx-react": "^5.4.3",
         "normalize.css": "^8.0.1",
         "prop-types": "^15.7.2",
+        "re-resizable": "^5.0.1",
         "react": "^16.8.6",
         "react-dnd": "^7.4.5",
         "react-dnd-html5-backend": "^7.4.4",

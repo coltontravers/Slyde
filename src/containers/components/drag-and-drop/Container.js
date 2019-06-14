@@ -7,17 +7,23 @@ import DraggableBox from "./DraggableBox";
 import snapToGrid from "./snapToGrid";
 
 class Container extends Component {
-    moveBox(slideId, left, top) {
+    moveBox(contentId, left, top) {
         const {
-            store: { updateSlideData },
+            store: { updateSlideData, activePage },
             slideBoxes
         } = this.props;
 
+        const slideId = activePage - 1;
+
         const slidesData = slideBoxes;
 
-        slidesData[0] = { ...slidesData[0], left, top };
+        slidesData[slideId] = {
+            ...slidesData[slideId],
+            left,
+            top
+        };
 
-        updateSlideData(slideId, slidesData);
+        updateSlideData(contentId, slidesData);
     }
 
     renderBox(item, index, connectDropTarget) {
@@ -65,6 +71,7 @@ export default inject("store")(
                 if (props.snapToGrid) {
                     [left, top] = snapToGrid(left, top);
                 }
+                console.log("THE MOVE BOX COMPONENT:", item);
                 component.moveBox(item.id, left, top);
             }
         },

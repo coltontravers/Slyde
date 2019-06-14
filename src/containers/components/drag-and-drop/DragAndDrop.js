@@ -9,6 +9,7 @@ import { DragNDropWrapper } from "./DragAndDrop.styles";
 class DragAroundCustomDragLayer extends Component {
     render() {
         const { slideBoxes } = this.props;
+        console.log("DRAG N DROP RENDERED");
 
         return (
             <DragNDropWrapper>

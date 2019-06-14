@@ -7,6 +7,8 @@ class DragPreviewBox extends Component {
     render() {
         const { boxContent } = this.props;
 
+        console.log("DragPreviewBox:", this.props.boxContent.width);
+
         const props = {};
 
         const SlideComponent = ItemTypes[boxContent.contentType];

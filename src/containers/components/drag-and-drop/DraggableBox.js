@@ -10,7 +10,7 @@ function getStyles(props) {
     return {
         opacity: isDragging ? 0 : 1,
         height: isDragging ? 0 : "",
-        background: "silver"
+        position: "relative"
     };
 }
 class DraggableBox extends Component {
