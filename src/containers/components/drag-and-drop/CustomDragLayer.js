@@ -40,8 +40,6 @@ function getItemStyles(props) {
 const CustomDragLayer = props => {
     const { item, itemType, isDragging } = props;
 
-    console.log("CustomDragLayer:", props);
-
     function renderItem() {
         switch (itemType) {
             case ItemTypes.BOX:

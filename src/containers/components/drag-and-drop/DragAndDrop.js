@@ -9,14 +9,10 @@ import { DragNDropWrapper } from "./DragAndDrop.styles";
 class DragAroundCustomDragLayer extends Component {
     render() {
         const { slideBoxes } = this.props;
-        console.log("DRAG N DROP RENDERED");
 
         return (
             <DragNDropWrapper>
-                <DragDropContextProvider
-                    backend={HTML5Backend}
-                    style={{ position: "relative" }}
-                >
+                <DragDropContextProvider backend={HTML5Backend}>
                     <Container slideBoxes={slideBoxes} />
                     <CustomDragLayer slideBoxes={slideBoxes} />
                 </DragDropContextProvider>

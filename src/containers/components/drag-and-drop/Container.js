@@ -71,7 +71,7 @@ export default inject("store")(
                 if (props.snapToGrid) {
                     [left, top] = snapToGrid(left, top);
                 }
-                console.log("THE MOVE BOX COMPONENT:", item);
+
                 component.moveBox(item.id, left, top);
             }
         },
