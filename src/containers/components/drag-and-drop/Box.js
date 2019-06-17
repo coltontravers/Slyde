@@ -8,7 +8,8 @@ import { BoxWrapper, BoxItem } from "./Box.styles";
 
 class Box extends Component {
     state = {
-        resizing: false
+        resizing: false,
+        hovering: false
     };
 
     resizedBox(dimensions) {
@@ -48,7 +49,11 @@ class Box extends Component {
         const ComponentName = component.component;
 
         return (
-            <BoxWrapper {...this.props}>
+            <BoxWrapper
+                {...this.props}
+                onMouseEnter={() => this.setState({ hovering: true })}
+                onMouseLeave={() => this.setState({ hovering: false })}
+            >
                 <Resizable
                     defaultSize={{
                         width: boxContent.width,
@@ -73,7 +78,7 @@ class Box extends Component {
                         <ComponentName {...component.props} />
                     </BoxItem>
                     <BoxHandle
-                        boxContent={boxContent}
+                        hovering={this.state.hovering}
                         connectDragSource={connectDragSource}
                     />
                 </Resizable>

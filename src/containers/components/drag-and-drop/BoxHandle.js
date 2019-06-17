@@ -3,31 +3,19 @@ import React, { Component } from "react";
 
 class BoxHandle extends Component {
     render() {
-        const { connectDragSource } = this.props;
-
-        // I'd like to implement a handle border instead.
-        // const styles = {
-        //     top: `${boxContent.top}px`,
-        //     left: `${boxContent.left}px`,
-        //     position: "absolute",
-        //     background: "grey",
-        //     height: "100%",
-        //     width: "100%",
-        //     zIndex: -1,
-        //     cursor: "grab",
-        //     border: "dotted"
-        // };
+        const { hovering, connectDragSource } = this.props;
 
         const styles = {
-            top: `-15px`,
-            left: `0px`,
+            top: "-15%",
+            left: `-1%`,
             position: "absolute",
-            background: "whitesmoke",
-            boxShadow: "0px 0px 2px 1px #dadada",
-            borderRadius: "50px 50px 0 0",
-            height: "10px",
-            width: "100%",
-            cursor: "move"
+            cursor: "move",
+            zIndex: "-1",
+            height: "130%",
+            width: "102%",
+            border: "2px solid rgb(218, 218, 218)",
+            boxShadow: "0px 0px 10px -3px #b5b5b5",
+            opacity: hovering ? 1 : 0
         };
 
         if (connectDragSource) {
@@ -43,7 +31,7 @@ BoxHandle.defaultProps = {
 };
 
 BoxHandle.propTypes = {
-    // boxContent: PropTypes.object.isRequired,
+    hovering: PropTypes.bool.isRequired,
     connectDragSource: PropTypes.func
 };
 
