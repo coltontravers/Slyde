@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PrimaryFormatButtons = styled.div`
     display: flex;
-    width: 50%;
+    width: 75%;
     min-width: 400px;
 `;
 

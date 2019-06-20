@@ -13,11 +13,11 @@ const elementTypes = {
 
 const BLOCK_TAGS = {
     blockquote: "quote",
-    p: "paragraph",
     pre: "code"
 };
 
 const MARK_TAGS = {
+    p: "paragraph",
     em: "italic",
     strong: "bold",
     u: "underline"

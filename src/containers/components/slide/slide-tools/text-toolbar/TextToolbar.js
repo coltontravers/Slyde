@@ -1,6 +1,7 @@
 // This whole file will need to be refactored.
 
 import { inject, observer } from "mobx-react";
+import { Selection } from "slate";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import {
@@ -16,6 +17,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TextToolbarButton from "./text-toolbar-button/TextToolbarButton";
+import TextToolbarFontSize from "./text-toolbar-font-size/TextToolbarFontSize";
+import TextToolbarFontFamily from "./text-toolbar-font-family/TextToolbarFontFamily";
 import { Wrapper, PrimaryFormatButtons } from "./TextToolbar.styles";
 
 const DEFAULT_NODE = "paragraph";
@@ -119,6 +122,72 @@ class TextToolbar extends Component {
         }
     };
 
+    createMark = fontSize => ({
+        type: "font-size",
+        data: { fontSize }
+    });
+
+    fontSizeStrategy = ({ change, fontSize, changeState }) => {
+        // const { value } = change;
+        // const { selection } = value;
+        // const {activeEditor} = this.props.store;
+        // const { value } = activeEditor;
+        // const { selection } = value;
+        // activeEditor.removeMark(selection);
+        // if (this.hasMark(value)) {
+        //     if (selection.isExpanded) {
+        //         // Change outerState to update the input font size number.
+        //         changeState({ fontSize });
+        //         return change
+        //             .removeMark(this.getMark(value))
+        //             .addMark(this.createMark(fontSize));
+        //     }
+        // } else {
+        //     if (selection.isExpanded) {
+        //         // Change outerState to update the input font size number.
+        //         changeState({ fontSize });
+        //         return change.addMark(this.createMark(fontSize));
+        //     }
+        //     console.info(
+        //         "[SlateJS][FontSizePlugin] selection collapsed, w/o inline."
+        //     );
+        // }
+        // return change;
+    };
+
+    onSelectFontSize = (event, b, c) => {
+        // event.preventDefault();
+        console.log(
+            "YOU CLICKED THE FONT SIZE:",
+            event,
+            b,
+            c,
+            this.props.store.activeEditor
+        );
+        const { activeEditor } = this.props.store;
+
+        const { value } = activeEditor;
+        const { selection } = value;
+
+        activeEditor.removeMark(selection);
+        // console.log(
+        //     "YOU CLICKED THE FONT SIZE:",
+        //     event,
+        //     b,
+        //     c,
+        //     this.props.store.activeEditor
+        // );
+        // this.props.store.activeEditor.undo();
+
+        // const fontSize = fontSizeValue || '1';
+        // const fontSize = "30";
+        // const fontSizeState = fontSizeStrategy({
+        //     change: value.change(),
+        //     fontSize,
+        //     changeState
+        // }).value;
+    };
+
     onClickMark = (event, type) => {
         event.preventDefault();
         this.props.store.activeEditor.toggleMark(type);
@@ -202,6 +271,11 @@ class TextToolbar extends Component {
                     >
                         <FontAwesomeIcon icon={faRedo} />
                     </TextToolbarButton>
+
+                    <TextToolbarFontSize
+                        onSelection={event => this.onSelectFontSize(event)}
+                    />
+                    <TextToolbarFontFamily />
                 </PrimaryFormatButtons>
             </Wrapper>
         );
