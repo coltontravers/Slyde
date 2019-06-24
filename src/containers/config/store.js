@@ -39,6 +39,12 @@ class Store {
                                                 {
                                                     type: "font-size",
                                                     data: { fontSize: "23" }
+                                                },
+                                                {
+                                                    type: "font-family",
+                                                    data: {
+                                                        fontFamily: "arial"
+                                                    }
                                                 }
                                             ],
                                             text:

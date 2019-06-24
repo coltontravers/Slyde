@@ -3,7 +3,10 @@ import React, { Component } from "react";
 import Select from "react-select";
 import { FontFamilyWrapper } from "./TextToolbarFontFamily.styles";
 
-const options = [{ value: "timesNewRoman", label: "Times New Roman" }];
+const options = [
+    { value: "arial", label: "Arial" },
+    { value: "times new roman", label: "Times New Roman" }
+];
 
 class TextToolbarFontFamily extends Component {
     state = {
@@ -11,8 +14,7 @@ class TextToolbarFontFamily extends Component {
     };
 
     handleChange = selectedOption => {
-        this.setState({ selectedOption });
-        console.log(`Option selected:`, selectedOption);
+        this.props.onSelection(selectedOption);
     };
 
     render() {
@@ -31,16 +33,8 @@ class TextToolbarFontFamily extends Component {
     }
 }
 
-// TextToolbarFontSize.defaultProps = {
-//     active: false,
-//     children: "",
-//     onMouseDown: () => {}
-// };
-
-// TextToolbarFontSize.propTypes = {
-//     active: PropTypes.bool,
-//     children: PropTypes.any,
-//     onMouseDown: PropTypes.func
-// };
+TextToolbarFontFamily.propTypes = {
+    onSelection: PropTypes.func.isRequired
+};
 
 export default TextToolbarFontFamily;

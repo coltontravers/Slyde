@@ -11,7 +11,7 @@ const isCodeHotkey = isKeyHotkey("mod+`");
 const isItalicHotkey = isKeyHotkey("mod+i");
 const isUnderlinedHotkey = isKeyHotkey("mod+u");
 
-const { FontSize, BlockQuote, CodeBlock } = RichText;
+const { FontFamily, FontSize, BlockQuote, CodeBlock } = RichText;
 
 class TextInput extends Component {
     onChange = ({ value }) => {
@@ -50,16 +50,12 @@ class TextInput extends Component {
 
     renderMark = (props, editor, next) => {
         const { children, mark, attributes } = props;
-        console.log("RENDERING MARK:", props);
 
         switch (mark.type) {
+            case "font-family":
+                return <FontFamily {...props}>{children}</FontFamily>;
             case "font-size":
                 return <FontSize {...props}>{children}</FontSize>;
-            // return (
-            //     <div {...props} style={{ fontSize: "25px" }}>
-            //         {children}
-            //     </div>
-            // );
             case "bold":
                 return <strong {...attributes}>{children}</strong>;
             case "code":
@@ -76,11 +72,8 @@ class TextInput extends Component {
     renderNode = (props, editor, next) => {
         const { attributes, children, node } = props;
 
-        console.log("RENDERING NODE:", props);
-
         switch (node.type) {
             case "paragraph":
-                // return <FontSize {...props}>{children}</FontSize>;
                 return (
                     <div {...props} style={{ fontSize: "25px" }}>
                         {children}

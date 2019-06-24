@@ -122,6 +122,25 @@ class TextToolbar extends Component {
         }
     };
 
+    onSelectFontFamily = selectedOption => {
+        const {
+            store: { activeEditor }
+        } = this.props;
+
+        // Get the current font size mark from the selection.
+        const filtered = activeEditor.value.document
+            .getActiveMarksAtRange(activeEditor.value.selection)
+            .toJSON()
+            .find(element => {
+                return element.type === "font-family";
+            });
+
+        activeEditor.replaceMark(filtered, {
+            type: "font-family",
+            data: { fontFamily: selectedOption.value }
+        });
+    };
+
     onSelectFontSize = selectedOption => {
         const {
             store: { activeEditor }
@@ -228,7 +247,10 @@ class TextToolbar extends Component {
                     <TextToolbarFontSize
                         onSelection={event => this.onSelectFontSize(event)}
                     />
-                    <TextToolbarFontFamily />
+
+                    <TextToolbarFontFamily
+                        onSelection={event => this.onSelectFontFamily(event)}
+                    />
                 </PrimaryFormatButtons>
             </Wrapper>
         );
