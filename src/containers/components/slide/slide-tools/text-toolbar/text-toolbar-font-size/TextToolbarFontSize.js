@@ -1,14 +1,7 @@
 import PropTypes from "prop-types";
-import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import Select from "react-select";
 import { FontSizeWrapper } from "./TextToolbarFontSize.styles";
-
-/* eslint-disable */
-const createMark = fontSize => ({
-    type: "font-size",
-    data: { fontSize }
-});
 
 const options = [
     { value: "6", label: "6" },
@@ -31,32 +24,18 @@ class TextToolbarFontSize extends Component {
         selectedOption: null
     };
 
-    handleChange = (selectedOption, b, c) => {
-        const { selection } = this.props.store.activeEditor.value;
-
-        console.log("THE SELECTION:", selection.toJSON(), selectedOption, b, c);
-
-        // Replace this with a better catch-all solution for text inside the selection.
-        // https://docs.slatejs.org/slate-core/commands#replacemark
-        this.props.store.activeEditor.replaceMark(
-            {
-                type: "font-size",
-                data: { fontSize: "23" }
-            },
-            { type: "font-size", data: { fontSize: selectedOption.value } }
-        );
+    handleChange = selectedOption => {
+        this.props.onSelection(selectedOption);
     };
 
     render() {
-        // Pull in the size of the current selected text.
-        // const { onMouseDown, active } = this.props;
         const { selectedOption } = this.state;
 
         return (
             <FontSizeWrapper>
                 <Select
                     value={selectedOption}
-                    onChange={(e, b, c) => this.handleChange(e, b, c)}
+                    onChange={e => this.handleChange(e)}
                     options={options}
                 />
             </FontSizeWrapper>
@@ -64,16 +43,8 @@ class TextToolbarFontSize extends Component {
     }
 }
 
-// TextToolbarFontSize.defaultProps = {
-//     active: false,
-//     children: "",
-//     onMouseDown: () => {}
-// };
+TextToolbarFontSize.propTypes = {
+    onSelection: PropTypes.func.isRequired
+};
 
-// TextToolbarFontSize.propTypes = {
-//     active: PropTypes.bool,
-//     children: PropTypes.any,
-//     onMouseDown: PropTypes.func
-// };
-
-export default inject("store")(observer(TextToolbarFontSize));
+export default TextToolbarFontSize;

@@ -31,7 +31,7 @@ class Store {
                             nodes: [
                                 {
                                     object: "block",
-                                    type: "font-size",
+                                    type: "text",
                                     nodes: [
                                         {
                                             object: "text",

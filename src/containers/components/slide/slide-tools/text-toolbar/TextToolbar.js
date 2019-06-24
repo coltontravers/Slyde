@@ -1,7 +1,7 @@
 // This whole file will need to be refactored.
 
 import { inject, observer } from "mobx-react";
-import { Selection } from "slate";
+import { Selection, Mark } from "slate";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import {
@@ -122,70 +122,23 @@ class TextToolbar extends Component {
         }
     };
 
-    createMark = fontSize => ({
-        type: "font-size",
-        data: { fontSize }
-    });
+    onSelectFontSize = selectedOption => {
+        const {
+            store: { activeEditor }
+        } = this.props;
 
-    fontSizeStrategy = ({ change, fontSize, changeState }) => {
-        // const { value } = change;
-        // const { selection } = value;
-        // const {activeEditor} = this.props.store;
-        // const { value } = activeEditor;
-        // const { selection } = value;
-        // activeEditor.removeMark(selection);
-        // if (this.hasMark(value)) {
-        //     if (selection.isExpanded) {
-        //         // Change outerState to update the input font size number.
-        //         changeState({ fontSize });
-        //         return change
-        //             .removeMark(this.getMark(value))
-        //             .addMark(this.createMark(fontSize));
-        //     }
-        // } else {
-        //     if (selection.isExpanded) {
-        //         // Change outerState to update the input font size number.
-        //         changeState({ fontSize });
-        //         return change.addMark(this.createMark(fontSize));
-        //     }
-        //     console.info(
-        //         "[SlateJS][FontSizePlugin] selection collapsed, w/o inline."
-        //     );
-        // }
-        // return change;
-    };
+        // Get the current font size mark from the selection.
+        const filtered = activeEditor.value.document
+            .getActiveMarksAtRange(activeEditor.value.selection)
+            .toJSON()
+            .find(element => {
+                return element.type === "font-size";
+            });
 
-    onSelectFontSize = (event, b, c) => {
-        // event.preventDefault();
-        console.log(
-            "YOU CLICKED THE FONT SIZE:",
-            event,
-            b,
-            c,
-            this.props.store.activeEditor
-        );
-        const { activeEditor } = this.props.store;
-
-        const { value } = activeEditor;
-        const { selection } = value;
-
-        activeEditor.removeMark(selection);
-        // console.log(
-        //     "YOU CLICKED THE FONT SIZE:",
-        //     event,
-        //     b,
-        //     c,
-        //     this.props.store.activeEditor
-        // );
-        // this.props.store.activeEditor.undo();
-
-        // const fontSize = fontSizeValue || '1';
-        // const fontSize = "30";
-        // const fontSizeState = fontSizeStrategy({
-        //     change: value.change(),
-        //     fontSize,
-        //     changeState
-        // }).value;
+        activeEditor.replaceMark(filtered, {
+            type: "font-size",
+            data: { fontSize: selectedOption.value }
+        });
     };
 
     onClickMark = (event, type) => {
