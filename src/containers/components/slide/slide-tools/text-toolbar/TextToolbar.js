@@ -217,6 +217,42 @@ class TextToolbar extends Component {
         );
     };
 
+    getActiveFontSizeMark = activeEditor => {
+        let mark;
+        if (activeEditor) {
+            mark = activeEditor.value.document
+                .getActiveMarksAtRange(activeEditor.value.selection)
+                .toJSON()
+                .find(element => {
+                    return element.type === "font-size";
+                });
+
+            if (mark) {
+                mark = mark.toJSON();
+            }
+        }
+
+        return mark;
+    };
+
+    getActiveFontFamilyMark = activeEditor => {
+        let mark;
+        if (activeEditor) {
+            mark = activeEditor.value.document
+                .getActiveMarksAtRange(activeEditor.value.selection)
+                .toJSON()
+                .find(element => {
+                    return element.type === "font-family";
+                });
+
+            if (mark) {
+                mark = mark.toJSON();
+            }
+        }
+
+        return mark;
+    };
+
     render() {
         return (
             <Wrapper>
@@ -246,11 +282,17 @@ class TextToolbar extends Component {
 
                     <TextToolbarFontSize
                         onSelection={event => this.onSelectFontSize(event)}
+                        mark={this.getActiveFontSizeMark(
+                            this.props.store.activeEditor
+                        )}
                     />
 
-                    <TextToolbarFontFamily
+                    {/* <TextToolbarFontFamily
                         onSelection={event => this.onSelectFontFamily(event)}
-                    />
+                        mark={this.getActiveFontFamilyMark(
+                            this.props.store.activeEditor
+                        )}
+                    /> */}
                 </PrimaryFormatButtons>
             </Wrapper>
         );

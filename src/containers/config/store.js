@@ -38,7 +38,7 @@ class Store {
                                             marks: [
                                                 {
                                                     type: "font-size",
-                                                    data: { fontSize: "23" }
+                                                    data: { fontSize: "22" }
                                                 },
                                                 {
                                                     type: "font-family",
@@ -60,8 +60,6 @@ class Store {
                     bold: false,
                     italics: false,
                     underline: false,
-                    top: 20,
-                    left: 20,
                     width: "100%",
                     height: "auto",
                     title: "Drag me around", // remove later

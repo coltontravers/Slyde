@@ -20,31 +20,70 @@ const options = [
 ];
 
 class TextToolbarFontSize extends Component {
-    state = {
-        selectedOption: null
-    };
+    constructor(props) {
+        super(props);
+
+        const {
+            mark: {
+                data: { fontSize }
+            }
+        } = this.props;
+
+        this.state = {
+            selectedOption: { value: fontSize, label: fontSize }
+        };
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (
+            nextProps.mark &&
+            nextProps.mark.data.fontSize &&
+            nextProps.mark.data.fontSize !== prevState.selectedOption
+        ) {
+            return {
+                selectedOption: {
+                    value: nextProps.mark.data.fontSize,
+                    label: nextProps.mark.data.fontSize
+                }
+            };
+        }
+        return null;
+    }
 
     handleChange = selectedOption => {
+        this.setState({
+            selectedOption: { value: selectedOption, label: selectedOption }
+        });
         this.props.onSelection(selectedOption);
     };
 
     render() {
-        const { selectedOption } = this.state;
+        const {
+            selectedOption: { value, label }
+        } = this.state;
 
         return (
             <FontSizeWrapper>
                 <Select
-                    value={selectedOption}
-                    onChange={e => this.handleChange(e)}
+                    // defaultValue="6"
+                    value={[{ value, label }]}
+                    onChange={this.handleChange}
                     options={options}
+                    isSearchable
+                    placeholder="font size..."
                 />
             </FontSizeWrapper>
         );
     }
 }
 
+TextToolbarFontSize.defaultProps = {
+    mark: { data: { fontSize: "12" }, object: "mark", type: "font-size" }
+};
+
 TextToolbarFontSize.propTypes = {
-    onSelection: PropTypes.func.isRequired
+    onSelection: PropTypes.func.isRequired,
+    mark: PropTypes.object
 };
 
 export default TextToolbarFontSize;

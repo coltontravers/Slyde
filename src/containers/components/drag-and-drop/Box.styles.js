@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
 export const BoxWrapper = styled.div`
-    transform: ${props =>
-        `translate3d(${props.boxContent.left}px, ${
-            props.boxContent.top
-        }px, 0)`};
     position: absolute;
     opacity: ${props => (props.isDragging ? 0 : 1)};
 `;
